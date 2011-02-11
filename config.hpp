@@ -15,35 +15,17 @@
  * along with "h2oh" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SDL/SDL.h>
-#include <gl/gl.h>
-#include "config.hpp"
-#include "menu.hpp"
-#include "game.hpp"
 
-extern config_type config;
-extern game_type   game;
-extern menu_type   menu;
-//----------------------------------- Main -------------------------------------
-int main(int argc, char *argv[])
+#include <SDL/SDL.h>
+
+struct config_type
 {
-   game_init();
-   menu_init();
-   //----------------------------------- Main loop --------------------------------
-   while (!game.status_quit_active)
-   {
-      if (game.status_menu_active)
-      {
-         menu_display();
-         menu_process();
-      }
-      if (game.status_game_active)
-      {
-         game_display();
-         menu_process();
-      }
-   }
-  //----------------------------------- Exit -------------------------------------
-  game_deinit();
-  return(0);
-}
+   int  screen_resolution_x;
+   int  screen_resolution_y;
+   int  screen_bbp;
+   bool screen_double_buffering;
+   bool screen_alpha_blending;
+   bool screen_fullscreen;
+};
+
+int init_config(void);

@@ -17,33 +17,43 @@
 
 #include <SDL/SDL.h>
 #include <gl/gl.h>
-#include "config.hpp"
 #include "menu.hpp"
 #include "game.hpp"
 
-extern config_type config;
-extern game_type   game;
-extern menu_type   menu;
-//----------------------------------- Main -------------------------------------
-int main(int argc, char *argv[])
+extern game_type game;
+       menu_type menu;
+
+int menu_init(void)
 {
-   game_init();
-   menu_init();
-   //----------------------------------- Main loop --------------------------------
-   while (!game.status_quit_active)
-   {
-      if (game.status_menu_active)
-      {
-         menu_display();
-         menu_process();
-      }
-      if (game.status_game_active)
-      {
-         game_display();
-         menu_process();
-      }
-   }
-  //----------------------------------- Exit -------------------------------------
-  game_deinit();
-  return(0);
+    menu.level         = 0;
+    menu.position      = 0;
+    menu.possition_max = 0;
+    return(1);
 }
+
+int menu_display(void)
+{
+    glPushMatrix();
+
+    glPopMatrix();
+    SDL_GL_SwapBuffers();
+    return(1);
+}
+
+int menu_process(void)
+{
+    while (SDL_PollEvent(&game.event))
+    {
+       if (game.event.type == SDL_QUIT) game.status_quit_active = true;
+       if (game.event.type == SDL_KEYDOWN)
+       {
+          if (game.event.key.keysym.sym == SDLK_ESCAPE)
+          {
+              game.status_quit_active = true;
+          }
+       }
+    }
+    return(1);
+}
+
+
