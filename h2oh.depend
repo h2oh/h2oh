@@ -1,0 +1,85 @@
+# depslib dependency file v1.0
+1297424358 source:c:\_svn_\h2oh\trunk\main.cpp
+	<SDL/SDL.h>
+	<gl/gl.h>
+	"config.hpp"
+	"menu.hpp"
+	"game.hpp"
+
+1297424320 source:c:\_svn_\h2oh\trunk\h2oh.rc
+
+1297424354 source:c:\_svn_\h2oh\trunk\game.cpp
+	<SDL/SDL.h>
+	<gl/gl.h>
+	"game.hpp"
+	"config.hpp"
+
+1297423922 source:c:\_svn_\h2oh\trunk\menu.cpp
+	<SDL/SDL.h>
+	<gl/gl.h>
+	"menu.hpp"
+	"game.hpp"
+
+1297424333 c:\_svn_\h2oh\trunk\config.hpp
+	<SDL/SDL.h>
+
+1297424380 c:\_svn_\h2oh\trunk\menu.hpp
+
+1297424329 c:\_svn_\h2oh\trunk\game.hpp
+
+1297423830 source:c:\_svn_\h2oh\trunk\config.cpp
+	"config.hpp"
+
+1297677764 source:c:\paul\c++_game_projects\h2oh\trunk\config.cpp
+	<fstream>
+	"config.hpp"
+
+1297677716 c:\paul\c++_game_projects\h2oh\trunk\config.hpp
+	<SDL/SDL.h>
+
+1297686515 source:c:\paul\c++_game_projects\h2oh\trunk\game.cpp
+	<SDL/SDL.h>
+	<SDL/SDL_mixer.h>
+	<gl/gl.h>
+	<physfs.h>
+	"game.hpp"
+	"config.hpp"
+	"textures.hpp"
+
+1297685667 c:\paul\c++_game_projects\h2oh\trunk\game.hpp
+
+1297692601 c:\paul\c++_game_projects\h2oh\trunk\textures.hpp
+	<gl/gl.h>
+
+1297424320 source:c:\paul\c++_game_projects\h2oh\trunk\h2oh.rc
+
+1297686369 source:c:\paul\c++_game_projects\h2oh\trunk\main.cpp
+	"config.hpp"
+	"game.hpp"
+	"menu.hpp"
+
+1297677200 c:\paul\c++_game_projects\h2oh\trunk\menu.hpp
+
+1297692601 source:c:\paul\c++_game_projects\h2oh\trunk\menu.cpp
+	<SDL/SDL.h>
+	<gl/gl.h>
+	"menu.hpp"
+	"game.hpp"
+	"textures.hpp"
+
+1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\music.cpp
+
+1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\network.cpp
+
+1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\physics.cpp
+
+1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\sound.cpp
+
+1297692601 source:c:\paul\c++_game_projects\h2oh\trunk\textures.cpp
+	<gl/gl.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	"textures.hpp"
+	"game.hpp"
+	"config.hpp"
+
