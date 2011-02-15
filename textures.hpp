@@ -28,6 +28,7 @@ struct image_type
    int game_logo;
    int background_00;
    int background_01;
+   int particle_flake;
 };
 
 int init_textures(void);

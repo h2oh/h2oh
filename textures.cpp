@@ -26,7 +26,7 @@
 #define GL_BGRA 0x80E1
 image_type   image;
 texture_type texture[MAX_TEXTURES];
-const char App_LogF[] = "Outcast Island.log";
+const char App_LogF[] = "H2oH.log";
 
 int load_textures(void)
 {
@@ -34,6 +34,7 @@ int load_textures(void)
    load_texture(texture_count,"data/textures/menu/main_logo.png");image.game_logo = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_00.png");image.background_00 = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_01.png");image.background_01 = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/particles/flake.png");image.particle_flake = texture_count;texture_count++;
    return(1);
 };
 

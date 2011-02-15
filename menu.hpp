@@ -15,8 +15,18 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
+struct background_scroll_type
+{
+   int   x_dir;
+   int   y_dir;
+   float x_pos;
+   float y_pos;
+   float scroll_rate;
+};
+
 struct menu_type
 {
+    background_scroll_type background_scroll[2];
     int  level;
     int  position;
     int  possition_max;
@@ -25,3 +35,5 @@ struct menu_type
 int menu_init(void);
 int menu_display(void);
 int menu_process(void);
+int background_process(void);
+

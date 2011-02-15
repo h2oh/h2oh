@@ -22,9 +22,15 @@
 #include "game.hpp"
 #include "config.hpp"
 #include "textures.hpp"
+#include "particles.hpp"
+#include "music.hpp"
+#include "sound.hpp"
 
+extern sound_type sound[MAX_SOUNDS];
+extern music_type music[MAX_MUSIC];
 extern config_type config;
 extern texture_type texture[MAX_TEXTURES];
+extern particle_type particle[MAX_PARTICLES];
 
 const char  App_Name[] = "H2oH!";
 const char  App_Icon[] = "data/icon.bmp";
@@ -70,13 +76,18 @@ int game_init(void)
    Mix_Volume(-1,config.audio_sound_volume);
    Mix_VolumeMusic(config.audio_music_volume);
    init_textures();
+   init_sounds();
+   init_music();
    game_load_resources();
+   init_particles();
    init_gl();
    return(1);
 }
 
 int game_load_resources()
 {
+   load_music();
+   load_sounds();
    load_textures();
    return(1);
 }
@@ -110,6 +121,8 @@ int game_process(void)
 int game_deinit(void)
 {
   save_config_file(App_ConF);
+  kill_music();
+  kill_sounds();
   kill_textures();
   PHYSFS_deinit();
   SDL_Quit();

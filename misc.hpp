@@ -15,15 +15,10 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SDL/SDL_mixer.h>
-
-const int MAX_MUSIC = 32;
-struct music_type
-{
-   Mix_Music *music;
-};
-
-int init_music(void);
-int load_music(void);
-int kill_music(void);
-int play_music(int music_num);
+int seed_rand(void);
+double random_double(void);
+int    random(int range);
+int    random_dec(void);
+int    random_cen(void);
+int    random_int(void);
+float  random_GLcoord(void);

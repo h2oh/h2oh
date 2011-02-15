@@ -30,14 +30,14 @@
 1297423830 source:c:\_svn_\h2oh\trunk\config.cpp
 	"config.hpp"
 
-1297677764 source:c:\paul\c++_game_projects\h2oh\trunk\config.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\config.cpp
 	<fstream>
 	"config.hpp"
 
-1297677716 c:\paul\c++_game_projects\h2oh\trunk\config.hpp
+1297770874 c:\paul\c++_game_projects\h2oh\trunk\config.hpp
 	<SDL/SDL.h>
 
-1297686515 source:c:\paul\c++_game_projects\h2oh\trunk\game.cpp
+1297775509 source:c:\paul\c++_game_projects\h2oh\trunk\game.cpp
 	<SDL/SDL.h>
 	<SDL/SDL_mixer.h>
 	<gl/gl.h>
@@ -45,41 +45,142 @@
 	"game.hpp"
 	"config.hpp"
 	"textures.hpp"
+	"particles.hpp"
 
-1297685667 c:\paul\c++_game_projects\h2oh\trunk\game.hpp
+1297770874 c:\paul\c++_game_projects\h2oh\trunk\game.hpp
 
-1297692601 c:\paul\c++_game_projects\h2oh\trunk\textures.hpp
+1297774640 c:\paul\c++_game_projects\h2oh\trunk\textures.hpp
 	<gl/gl.h>
 
-1297424320 source:c:\paul\c++_game_projects\h2oh\trunk\h2oh.rc
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\h2oh.rc
 
-1297686369 source:c:\paul\c++_game_projects\h2oh\trunk\main.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\main.cpp
 	"config.hpp"
 	"game.hpp"
 	"menu.hpp"
 
-1297677200 c:\paul\c++_game_projects\h2oh\trunk\menu.hpp
+1297776488 c:\paul\c++_game_projects\h2oh\trunk\menu.hpp
 
-1297692601 source:c:\paul\c++_game_projects\h2oh\trunk\menu.cpp
+1297775575 source:c:\paul\c++_game_projects\h2oh\trunk\menu.cpp
 	<SDL/SDL.h>
 	<gl/gl.h>
 	"menu.hpp"
 	"game.hpp"
 	"textures.hpp"
+	"particles.hpp"
 
-1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\music.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\music.cpp
 
-1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\network.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\network.cpp
 
-1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\physics.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\physics.cpp
 
-1297677200 source:c:\paul\c++_game_projects\h2oh\trunk\sound.cpp
+1297770874 source:c:\paul\c++_game_projects\h2oh\trunk\sound.cpp
 
-1297692601 source:c:\paul\c++_game_projects\h2oh\trunk\textures.cpp
+1297774640 source:c:\paul\c++_game_projects\h2oh\trunk\textures.cpp
 	<gl/gl.h>
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
 	"textures.hpp"
 	"game.hpp"
 	"config.hpp"
+
+1297775235 source:c:\paul\c++_game_projects\h2oh\trunk\misc.cpp
+	<time.h>
+	<stdlib.h>
+	"misc.hpp"
+
+1297775075 c:\paul\c++_game_projects\h2oh\trunk\misc.hpp
+
+1297772844 c:\paul\c++_game_projects\h2oh\trunk\particles.hpp
+
+1297775874 source:c:\paul\c++_game_projects\h2oh\trunk\particles.cpp
+	"particles.hpp"
+	"misc.hpp"
+	"textures.hpp"
+	<math.h>
+	<gl/gl.h>
+
+1297770874 source:c:\paul\c++_game_projects\h2oh\config.cpp
+	<fstream>
+	"config.hpp"
+
+1297770874 c:\paul\c++_game_projects\h2oh\config.hpp
+	<SDL/SDL.h>
+
+1297782219 source:c:\paul\c++_game_projects\h2oh\game.cpp
+	<SDL/SDL.h>
+	<SDL/SDL_mixer.h>
+	<gl/gl.h>
+	<physfs.h>
+	"game.hpp"
+	"config.hpp"
+	"textures.hpp"
+	"particles.hpp"
+	"music.hpp"
+	"sound.hpp"
+
+1297770874 c:\paul\c++_game_projects\h2oh\game.hpp
+
+1297774640 c:\paul\c++_game_projects\h2oh\textures.hpp
+	<gl/gl.h>
+
+1297772844 c:\paul\c++_game_projects\h2oh\particles.hpp
+
+1297770874 source:c:\paul\c++_game_projects\h2oh\h2oh.rc
+
+1297770874 source:c:\paul\c++_game_projects\h2oh\main.cpp
+	"config.hpp"
+	"game.hpp"
+	"menu.hpp"
+
+1297776488 c:\paul\c++_game_projects\h2oh\menu.hpp
+
+1297775235 source:c:\paul\c++_game_projects\h2oh\misc.cpp
+	<time.h>
+	<stdlib.h>
+	"misc.hpp"
+
+1297775075 c:\paul\c++_game_projects\h2oh\misc.hpp
+
+1297782219 source:c:\paul\c++_game_projects\h2oh\music.cpp
+	"music.hpp"
+
+1297770874 source:c:\paul\c++_game_projects\h2oh\network.cpp
+
+1297775874 source:c:\paul\c++_game_projects\h2oh\particles.cpp
+	"particles.hpp"
+	"misc.hpp"
+	"textures.hpp"
+	<math.h>
+	<gl/gl.h>
+
+1297770874 source:c:\paul\c++_game_projects\h2oh\physics.cpp
+
+1297782219 source:c:\paul\c++_game_projects\h2oh\sound.cpp
+	"sound.hpp"
+
+1297782046 source:c:\paul\c++_game_projects\h2oh\menu.cpp
+	<SDL/SDL.h>
+	<gl/gl.h>
+	"menu.hpp"
+	"game.hpp"
+	"textures.hpp"
+	"particles.hpp"
+	"music.hpp"
+	"sound.hpp"
+
+1297781596 source:c:\paul\c++_game_projects\h2oh\textures.cpp
+	<gl/gl.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	"textures.hpp"
+	"game.hpp"
+	"config.hpp"
+
+1297781954 c:\paul\c++_game_projects\h2oh\music.hpp
+	<SDL/SDL_mixer.h>
+
+1297781878 c:\paul\c++_game_projects\h2oh\sound.hpp
+	<SDL/SDL_mixer.h>
 

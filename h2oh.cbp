@@ -36,10 +36,14 @@
 		<Unit filename="main.hpp" />
 		<Unit filename="menu.cpp" />
 		<Unit filename="menu.hpp" />
+		<Unit filename="misc.cpp" />
+		<Unit filename="misc.hpp" />
 		<Unit filename="music.cpp" />
 		<Unit filename="music.hpp" />
 		<Unit filename="network.cpp" />
 		<Unit filename="network.hpp" />
+		<Unit filename="particles.cpp" />
+		<Unit filename="particles.hpp" />
 		<Unit filename="physics.cpp" />
 		<Unit filename="physics.hpp" />
 		<Unit filename="sound.cpp" />

@@ -15,15 +15,19 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SDL/SDL_mixer.h>
+const int MAX_PARTICLES = 500;
 
-const int MAX_MUSIC = 32;
-struct music_type
+struct particle_type   			    // Create A Structure For Particle
 {
-   Mix_Music *music;
+	bool	active;					// Active (Yes/No)
+	float	life;					// Particle Life
+	float	fade;					// Fade Speed
+	float	r , g , b;
+	float	x , y , z;
+	float	xv, yv, zv;
+	float	xg, yg, zg;
 };
 
-int init_music(void);
-int load_music(void);
-int kill_music(void);
-int play_music(int music_num);
+int init_particles(void);
+int process_particles(void);
+int draw_particles(void);
