@@ -17,7 +17,7 @@
 
 #include <gl/gl.h>
 
-const int MAX_TEXTURES = 16;
+const int MAX_TEXTURES = 32;
 struct texture_type
 {
    GLuint texture;
@@ -25,7 +25,19 @@ struct texture_type
 
 struct image_type
 {
-   int game_logo;
+   int main_logo;
+   int new_game;
+   int new_game_highlighted;
+   int save_game;
+   int save_game_highlighted;
+   int load_game;
+   int load_game_highlighted;
+   int resume_game;
+   int resume_game_highlighted;
+   int quit_game;
+   int quit_game_highlighted;
+   int options;
+   int options_highlighted;
    int background_00;
    int background_01;
    int particle_flake;

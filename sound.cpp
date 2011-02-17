@@ -16,7 +16,7 @@
  */
 
 #include "sound.hpp"
-
+sfx_type   sfx;
 sound_type sound[MAX_SOUNDS];
 
 int init_sounds(void)
@@ -32,8 +32,10 @@ int init_sounds(void)
 
 int load_sounds(void)
 {
-//    sound[0].active =  true; sound[0].sound =  Mix_LoadWAV("data/sound/menu_move.wav");
-    return(1);
+   int sfx_count = 0;
+   sound[sfx_count].active =  true; sound[sfx_count].sound =  Mix_LoadWAV("data/sound/menu_move.wav");sfx.menu_move = sfx_count;sfx_count++;
+   sound[sfx_count].active =  true; sound[sfx_count].sound =  Mix_LoadWAV("data/sound/menu_select.wav");sfx.menu_select = sfx_count;sfx_count++;
+   return(1);
 };
 
 int kill_sounds(void)

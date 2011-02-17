@@ -16,6 +16,7 @@
  */
 #include "music.hpp"
 
+song_type  song;
 music_type music[MAX_MUSIC];
 int current_track;
 
@@ -31,8 +32,9 @@ int init_music(void)
 
 int load_music(void)
 {
-//    music[ 0].music = Mix_LoadMUS("data/music/level_00.s3m");
-    return(0);
+   int music_count = 0;
+   music[music_count].music = Mix_LoadMUS("data/music/menu_001.mod");song.menu_001 = music_count;music_count++;
+   return(0);
 };
 
 int kill_music(void)

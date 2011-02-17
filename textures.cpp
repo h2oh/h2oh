@@ -31,7 +31,19 @@ const char App_LogF[] = "H2oH.log";
 int load_textures(void)
 {
    int texture_count = 0;
-   load_texture(texture_count,"data/textures/menu/main_logo.png");image.game_logo = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/main_logo.png");image.main_logo = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/new_game.png");image.new_game = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/new_game_highlighted.png");image.new_game_highlighted = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/save_game.png");image.save_game = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/save_game_highlighted.png");image.save_game_highlighted = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/load_game.png");image.load_game = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/load_game_highlighted.png");image.load_game_highlighted = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/resume_game.png");image.resume_game = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/resume_game_highlighted.png");image.resume_game_highlighted = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/quit_game.png");image.quit_game = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/quit_game_highlighted.png");image.quit_game_highlighted = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/options.png");image.options = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/options_highlighted.png");image.options_highlighted = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_00.png");image.background_00 = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_01.png");image.background_01 = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/particles/flake.png");image.particle_flake = texture_count;texture_count++;

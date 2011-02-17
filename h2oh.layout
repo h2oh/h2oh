@@ -2,16 +2,19 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="default" />
 	<File name="config.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="759" topLine="0" />
+		<Cursor1 position="781" topLine="0" />
 	</File>
 	<File name="config.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="759" topLine="0" />
 	</File>
-	<File name="game.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="game.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="4082" topLine="0" />
 	</File>
 	<File name="game.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="759" topLine="0" />
+		<Cursor1 position="1015" topLine="0" />
+	</File>
+	<File name="graphics.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="790" topLine="0" />
 	</File>
 	<File name="h2oh.rc" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="759" topLine="0" />
@@ -23,7 +26,7 @@
 		<Cursor1 position="761" topLine="0" />
 	</File>
 	<File name="menu.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="933" topLine="39" />
+		<Cursor1 position="8251" topLine="183" />
 	</File>
 	<File name="menu.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1136" topLine="2" />
@@ -31,11 +34,11 @@
 	<File name="misc.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="820" topLine="0" />
 	</File>
-	<File name="music.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1091" topLine="19" />
+	<File name="music.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="783" topLine="5" />
 	</File>
 	<File name="music.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="759" topLine="0" />
+		<Cursor1 position="866" topLine="0" />
 	</File>
 	<File name="network.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="759" topLine="0" />
@@ -52,16 +55,16 @@
 	<File name="physics.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="759" topLine="0" />
 	</File>
-	<File name="sound.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="839" topLine="17" />
+	<File name="sound.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1099" topLine="17" />
 	</File>
 	<File name="sound.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1008" topLine="0" />
+		<Cursor1 position="901" topLine="0" />
 	</File>
 	<File name="textures.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="2052" topLine="0" />
+		<Cursor1 position="4788" topLine="72" />
 	</File>
-	<File name="textures.hpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="972" topLine="1" />
+	<File name="textures.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="863" topLine="13" />
 	</File>
 </CodeBlocks_layout_file>

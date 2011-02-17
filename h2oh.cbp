@@ -29,6 +29,8 @@
 		<Unit filename="config.hpp" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.hpp" />
+		<Unit filename="graphics.cpp" />
+		<Unit filename="graphics.hpp" />
 		<Unit filename="h2oh.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>

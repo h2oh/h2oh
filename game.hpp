@@ -22,6 +22,11 @@ struct game_type
    bool      status_game_active;
    bool      status_quit_active;
    SDL_Event event;
+   int       mouse_button;
+   float     mouse_x;
+   float     mouse_y;
+   float     mouse_xrel;
+   float     mouse_yrel;
 };
 
 int game_init(void);

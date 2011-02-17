@@ -23,6 +23,11 @@ struct music_type
    Mix_Music *music;
 };
 
+struct song_type
+{
+   int menu_001;
+};
+
 int init_music(void);
 int load_music(void);
 int kill_music(void);

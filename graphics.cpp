@@ -15,23 +15,17 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SDL/SDL_mixer.h>
 
-const int MAX_SOUNDS = 64;
-struct sound_type
+#include "graphics.hpp"
+
+int   gl_to_res(float gl_coord, int max_res)
 {
-   bool active;
-   int channel;
-   Mix_Chunk *sound;
-};
+   return((gl_coord+1)*(max_res / 2));
+}
 
-struct sfx_type
+
+
+float res_to_gl(int  res_coord, int max_res)
 {
-   int menu_move;
-   int menu_select;
-};
-
-int init_sounds(void);
-int load_sounds(void);
-int kill_sounds(void);
-int play_sound (int sound_num);
+   return(((res_coord / 2) / (max_res / 2)) -1);
+}
