@@ -84,6 +84,7 @@ int process_particles(void)
 int draw_particles(void)
 {
     glPushMatrix();
+    glDisable(GL_DEPTH_TEST);
     glBindTexture(GL_TEXTURE_2D, texture[image.particle_flake].texture);
 	for (int count = 0; count < MAX_PARTICLES; count++)
 	{

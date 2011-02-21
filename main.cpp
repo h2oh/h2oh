@@ -28,14 +28,14 @@ extern menu_type   menu;
 int main(int argc, char *argv[])
 {
    game_init();
-   menu_init();
+   menu_system_init();
    //----------------------------------- Main loop --------------------------------
    while (!game.status_quit_active)
    {
       if (game.status_menu_active)
       {
-         menu_display();
-         menu_process();
+         menu_system_display();
+         menu_system_process();
       }
       if (game.status_game_active)
       {

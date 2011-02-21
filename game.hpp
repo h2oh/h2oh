@@ -15,6 +15,7 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <SDL/SDL.h>
 
 struct game_type
 {
@@ -22,7 +23,9 @@ struct game_type
    bool      status_game_active;
    bool      status_quit_active;
    SDL_Event event;
-   int       mouse_button;
+   bool      mouse_button_left;
+   bool      mouse_button_middle;
+   bool      mouse_button_right;
    float     mouse_x;
    float     mouse_y;
    float     mouse_xrel;

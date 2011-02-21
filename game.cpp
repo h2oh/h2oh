@@ -19,18 +19,21 @@
 #include <SDL/SDL_mixer.h>
 #include <gl/gl.h>
 #include <physfs.h>
+#include <Box2D/Box2D.h>
 #include "game.hpp"
 #include "config.hpp"
 #include "textures.hpp"
 #include "particles.hpp"
 #include "music.hpp"
+#include "menu.hpp"
 #include "sound.hpp"
 
-extern sound_type sound[MAX_SOUNDS];
-extern music_type music[MAX_MUSIC];
-extern config_type config;
-extern texture_type texture[MAX_TEXTURES];
+extern sound_type    sound[MAX_SOUNDS];
+extern music_type    music[MAX_MUSIC];
+extern config_type   config;
+extern texture_type  texture[MAX_TEXTURES];
 extern particle_type particle[MAX_PARTICLES];
+extern menu_type     menu;
 
 const char  App_Name[] = "H2oH!";
 const char  App_Icon[] = "data/icon.bmp";
@@ -50,7 +53,7 @@ int game_init(void)
    game.status_quit_active = false;
    load_default_config();
    init_log_file(App_LogF);
-   load_config_file(App_ConF);
+   //load_config_file(App_ConF);
    //----------------------------------- Start the PhysicsFS ----------------------
    //Log_File(App_Logf,"Starting PhysicsFS...");
    PHYSFS_init(argv[0]);
@@ -81,6 +84,7 @@ int game_init(void)
    game_load_resources();
    init_particles();
    init_gl();
+
    return(1);
 }
 
@@ -94,7 +98,10 @@ int game_load_resources()
 
 int game_display(void)
 {
-    SDL_ShowCursor(SDL_DISABLE); // move out when menu active so it only gets called once!
+
+
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
 
     glPopMatrix();
@@ -111,7 +118,15 @@ int game_process(void)
       {
          if (game.event.key.keysym.sym == SDLK_ESCAPE)
          {
-             game.status_quit_active = true;
+            SDL_ShowCursor(SDL_ENABLE);
+            game.status_menu_active  = true;
+            game.status_game_active  = false;
+            menu.last_sellect        = -1;
+            menu.current_level       = 0;
+            menu.current_button      = 0;
+            game.mouse_button_left   = false;
+            game.mouse_button_middle = false;
+            game.mouse_button_right  = false;
          }
       }
    }
@@ -120,6 +135,8 @@ int game_process(void)
 
 int game_deinit(void)
 {
+
+
   save_config_file(App_ConF);
   kill_music();
   kill_sounds();

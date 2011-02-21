@@ -15,9 +15,12 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
+const char Slot_00[] = "save/slot_00.sav";
+const char Slot_01[] = "save/slot_01.sav";
+const char Slot_02[] = "save/slot_02.sav";
+const char Slot_03[] = "save/slot_03.sav";
+const char Slot_04[] = "save/slot_04.sav";
+const char Slot_05[] = "save/slot_05.sav";
 
-
-
-int   gl_to_res(float gl_coord, int max_res);
-float res_to_gl(int  res_coord, int max_res);
-
+int Save_Game(int slot);
+int Load_Game(int slot);
