@@ -28,12 +28,16 @@
 #include "menu.hpp"
 #include "sound.hpp"
 
-extern sound_type    sound[MAX_SOUNDS];
-extern music_type    music[MAX_MUSIC];
 extern config_type   config;
-extern texture_type  texture[MAX_TEXTURES];
 extern particle_type particle[MAX_PARTICLES];
 extern menu_type     menu;
+extern sfx_type      sfx;
+extern sound_type    sound[MAX_SOUNDS];
+extern song_type     song;
+extern music_type    music[MAX_MUSIC];
+extern image_type    image;
+extern texture_type  texture[MAX_TEXTURES];
+       game_type     game;
 
 const char  App_Name[] = "H2oH!";
 const char  App_Icon[] = "data/icon.bmp";
@@ -41,13 +45,13 @@ const char  App_ConF[] = "H2oH.cfg";
 const char  App_LogF[] = "H2oH.log";
 const char  App_DatF[] = "H2oH.dat";
 
-game_type    game;
 Uint32       colorkey;
 SDL_Surface *App_Icon_Surface;
 char        *argv[0];
 
 int game_init(void)
 {
+   background_init();
    game.status_menu_active = true;
    game.status_game_active = false;
    game.status_quit_active = false;
@@ -98,10 +102,8 @@ int game_load_resources()
 
 int game_display(void)
 {
-
-
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    background_display();
     glPushMatrix();
 
     glPopMatrix();
@@ -111,6 +113,7 @@ int game_display(void)
 
 int game_process(void)
 {
+   background_process();
    while (SDL_PollEvent(&game.event))
    {
       if (game.event.type == SDL_QUIT) game.status_quit_active = true;
@@ -163,3 +166,177 @@ int init_gl(void)
   glEnable(GL_TEXTURE_2D);
   return(1);
 }
+
+int background_process(void)
+{
+// -------------------------   background 0  -----------------------------------
+   if (game.background_scroll[0].x_dir == 0)
+   {
+      game.background_scroll[0].x_pos -= game.background_scroll[0].scroll_rate;
+      if (game.background_scroll[0].x_pos < 0.0f) game.background_scroll[0].x_dir = 1;
+   }
+   if (game.background_scroll[0].x_dir == 1)
+   {
+      game.background_scroll[0].x_pos += game.background_scroll[0].scroll_rate;
+      if (game.background_scroll[0].x_pos > 1.0f) game.background_scroll[0].x_dir = 0;
+   }
+
+   if (game.background_scroll[0].y_dir == 0)
+   {
+      game.background_scroll[0].y_pos -= game.background_scroll[0].scroll_rate;
+      if (game.background_scroll[0].y_pos < 0.0f) game.background_scroll[0].y_dir = 1;
+   }
+   if (game.background_scroll[0].y_dir == 1)
+   {
+      game.background_scroll[0].y_pos += game.background_scroll[0].scroll_rate;
+      if (game.background_scroll[0].y_pos > 0.75f) game.background_scroll[0].y_dir = 0;
+   }
+// -------------------------   background 1  -----------------------------------
+   if (game.background_scroll[1].x_dir == 0)
+   {
+      game.background_scroll[1].x_pos -= game.background_scroll[1].scroll_rate;
+      if (game.background_scroll[1].x_pos < 0.0f) game.background_scroll[1].x_dir = 1;
+   }
+   if (game.background_scroll[1].x_dir == 1)
+   {
+      game.background_scroll[1].x_pos += game.background_scroll[1].scroll_rate;
+      if (game.background_scroll[1].x_pos > 1.0f) game.background_scroll[1].x_dir = 0;
+   }
+
+   if (game.background_scroll[1].y_dir == 0)
+   {
+      game.background_scroll[1].y_pos -= game.background_scroll[1].scroll_rate;
+      if (game.background_scroll[1].y_pos < 0.0f) game.background_scroll[1].y_dir = 1;
+   }
+   if (game.background_scroll[1].y_dir == 1)
+   {
+      game.background_scroll[1].y_pos += game.background_scroll[1].scroll_rate;
+      if (game.background_scroll[1].y_pos > 0.75f) game.background_scroll[1].y_dir = 0;
+   }
+   return(1);
+}
+
+int background_init    (void)
+{
+   game.background_scroll[0].x_dir        = 0;
+   game.background_scroll[0].y_dir        = 0;
+   game.background_scroll[0].x_pos        = 0.0f;
+   game.background_scroll[0].y_pos        = 0.0f;
+   game.background_scroll[0].scroll_rate  = 0.0005f;
+   game.background_scroll[1].x_dir        = 1;
+   game.background_scroll[1].y_dir        = 1;
+   game.background_scroll[1].x_pos        = 0.0f;
+   game.background_scroll[1].y_pos        = 0.0f;
+   game.background_scroll[1].scroll_rate  = 0.001f;
+   return(1);
+};
+
+int background_display (void)
+{
+   float z_pos   = 0.0f;
+   glPushMatrix();
+ //---------------------------------- display backgrounds ---------------------------------------------------------------------
+   if (game.background_scroll[3].x_pos > game.background_scroll[2].x_pos)
+   {
+       z_pos = 0.16f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[3].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f( 2.000f + game.background_scroll[2].x_pos,-2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f( 2.000f + game.background_scroll[2].x_pos, 2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f( 2.000f + game.background_scroll[3].x_pos, 2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f( 2.000f + game.background_scroll[3].x_pos,-2.000f + game.background_scroll[3].y_pos,z_pos);
+       glEnd();
+   }
+   else
+   {
+       z_pos = 0.16f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[3].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f(-2.000f + game.background_scroll[3].x_pos,-2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f(-2.000f + game.background_scroll[3].x_pos, 2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f(-2.000f + game.background_scroll[2].x_pos, 2.000f + game.background_scroll[3].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f(-2.000f + game.background_scroll[2].x_pos,-2.000f + game.background_scroll[3].y_pos,z_pos);
+       glEnd();
+   }
+   if (game.background_scroll[2].x_pos > game.background_scroll[3].x_pos)
+   {
+       z_pos = 0.16f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[2].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f( 2.000f + game.background_scroll[3].x_pos,-2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f( 2.000f + game.background_scroll[3].x_pos, 2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f( 2.000f + game.background_scroll[2].x_pos, 2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f( 2.000f + game.background_scroll[2].x_pos,-2.000f + game.background_scroll[2].y_pos,z_pos);
+       glEnd();
+   }
+   else
+   {
+       z_pos = 0.16f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[2].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f(-2.000f + game.background_scroll[2].x_pos,-2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f(-2.000f + game.background_scroll[2].x_pos, 2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f(-2.000f + game.background_scroll[3].x_pos, 2.000f + game.background_scroll[2].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f(-2.000f + game.background_scroll[3].x_pos,-2.000f + game.background_scroll[2].y_pos,z_pos);
+       glEnd();
+   }
+
+   if (game.background_scroll[1].x_pos > game.background_scroll[0].x_pos)
+   {
+       z_pos = 0.15f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[1].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f( 2.000f + game.background_scroll[0].x_pos,-2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f( 2.000f + game.background_scroll[0].x_pos, 2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f( 2.000f + game.background_scroll[1].x_pos, 2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f( 2.000f + game.background_scroll[1].x_pos,-2.000f + game.background_scroll[1].y_pos,z_pos);
+       glEnd();
+   }
+   else
+   {
+       z_pos = 0.15f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[1].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f(-2.000f + game.background_scroll[1].x_pos,-2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f(-2.000f + game.background_scroll[1].x_pos, 2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f(-2.000f + game.background_scroll[0].x_pos, 2.000f + game.background_scroll[1].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f(-2.000f + game.background_scroll[0].x_pos,-2.000f + game.background_scroll[1].y_pos,z_pos);
+       glEnd();
+   }
+   if (game.background_scroll[0].x_pos > game.background_scroll[1].x_pos)
+   {
+       z_pos = 0.15f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[0].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f( 2.000f + game.background_scroll[1].x_pos,-2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f( 2.000f + game.background_scroll[1].x_pos, 2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f( 2.000f + game.background_scroll[0].x_pos, 2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f( 2.000f + game.background_scroll[0].x_pos,-2.000f + game.background_scroll[0].y_pos,z_pos);
+       glEnd();
+   }
+   else
+   {
+       z_pos = 0.15f;
+       glBindTexture( GL_TEXTURE_2D, texture[game.background_scroll[0].image].texture);
+       glLoadIdentity();
+       glBegin( GL_QUADS );
+       glTexCoord2i( 0, 1 );glVertex3f(-2.000f + game.background_scroll[0].x_pos,-2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 0, 0 );glVertex3f(-2.000f + game.background_scroll[0].x_pos, 2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 1, 0 );glVertex3f(-2.000f + game.background_scroll[1].x_pos, 2.000f + game.background_scroll[0].y_pos,z_pos);
+       glTexCoord2i( 1, 1 );glVertex3f(-2.000f + game.background_scroll[1].x_pos,-2.000f + game.background_scroll[0].y_pos,z_pos);
+       glEnd();
+   }
+//--------------------------------------------------------------------------------------------------------------------------------------
+
+    glPopMatrix();
+
+    return(1);
+};
+

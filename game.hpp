@@ -17,6 +17,15 @@
 
 #include <SDL/SDL.h>
 
+struct background_scroll_type
+{
+   int   x_dir;
+   int   y_dir;
+   float x_pos;
+   float y_pos;
+   float scroll_rate;
+};
+
 struct game_type
 {
    bool      status_menu_active;
@@ -30,6 +39,7 @@ struct game_type
    float     mouse_y;
    float     mouse_xrel;
    float     mouse_yrel;
+   background_scroll_type background_scroll[2];
 };
 
 int game_init(void);
@@ -38,3 +48,9 @@ int game_display(void);
 int game_process(void);
 int game_deinit(void);
 int init_gl(void);
+int background_init    (void);
+int background_process (void);
+int background_display (void);
+
+
+

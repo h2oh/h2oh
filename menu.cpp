@@ -38,69 +38,11 @@ extern texture_type texture[MAX_TEXTURES];
 extern game_type    game;
        menu_type    menu;
 
-int background_process(void)
-{
-// -------------------------   background 0  -----------------------------------
-   if (menu.background_scroll[0].x_dir == 0)
-   {
-      menu.background_scroll[0].x_pos -= menu.background_scroll[0].scroll_rate;
-      if (menu.background_scroll[0].x_pos < 0.0f) menu.background_scroll[0].x_dir = 1;
-   }
-   if (menu.background_scroll[0].x_dir == 1)
-   {
-      menu.background_scroll[0].x_pos += menu.background_scroll[0].scroll_rate;
-      if (menu.background_scroll[0].x_pos > 1.0f) menu.background_scroll[0].x_dir = 0;
-   }
-
-   if (menu.background_scroll[0].y_dir == 0)
-   {
-      menu.background_scroll[0].y_pos -= menu.background_scroll[0].scroll_rate;
-      if (menu.background_scroll[0].y_pos < 0.0f) menu.background_scroll[0].y_dir = 1;
-   }
-   if (menu.background_scroll[0].y_dir == 1)
-   {
-      menu.background_scroll[0].y_pos += menu.background_scroll[0].scroll_rate;
-      if (menu.background_scroll[0].y_pos > 0.75f) menu.background_scroll[0].y_dir = 0;
-   }
-// -------------------------   background 1  -----------------------------------
-   if (menu.background_scroll[1].x_dir == 0)
-   {
-      menu.background_scroll[1].x_pos -= menu.background_scroll[1].scroll_rate;
-      if (menu.background_scroll[1].x_pos < 0.0f) menu.background_scroll[1].x_dir = 1;
-   }
-   if (menu.background_scroll[1].x_dir == 1)
-   {
-      menu.background_scroll[1].x_pos += menu.background_scroll[1].scroll_rate;
-      if (menu.background_scroll[1].x_pos > 1.0f) menu.background_scroll[1].x_dir = 0;
-   }
-
-   if (menu.background_scroll[1].y_dir == 0)
-   {
-      menu.background_scroll[1].y_pos -= menu.background_scroll[1].scroll_rate;
-      if (menu.background_scroll[1].y_pos < 0.0f) menu.background_scroll[1].y_dir = 1;
-   }
-   if (menu.background_scroll[1].y_dir == 1)
-   {
-      menu.background_scroll[1].y_pos += menu.background_scroll[1].scroll_rate;
-      if (menu.background_scroll[1].y_pos > 0.75f) menu.background_scroll[1].y_dir = 0;
-   }
-   return(1);
-}
 
 int menu_system_init(void)
 {
     int level_count  = 0;
     int button_count = 0;
-    menu.background_scroll[0].x_dir        = 0;
-    menu.background_scroll[0].y_dir        = 0;
-    menu.background_scroll[0].x_pos        = 0.0f;
-    menu.background_scroll[0].y_pos        = 0.0f;
-    menu.background_scroll[0].scroll_rate  = 0.0005f;
-    menu.background_scroll[1].x_dir        = 1;
-    menu.background_scroll[1].y_dir        = 1;
-    menu.background_scroll[1].x_pos        = 0.0f;
-    menu.background_scroll[1].y_pos        = 0.0f;
-    menu.background_scroll[1].scroll_rate  = 0.001f;
     ///--------------main menu init -----------------------
     level_count  = 0;//level 0
     button_count = 0;
@@ -298,26 +240,6 @@ int menu_system_display(void)
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
    glDisable(GL_DEPTH_TEST);
-   //   display_backgrounds....
-   z_pos -= 0.01f;
-   glBindTexture( GL_TEXTURE_2D, texture[image.background_00].texture); //background
-   glLoadIdentity();
-   glBegin(GL_QUADS);
-   glTexCoord2i( 0, 1 );glVertex3f(-2.0f + menu.background_scroll[0].x_pos,-2.0f + menu.background_scroll[0].y_pos,z_pos);
-   glTexCoord2i( 0, 0 );glVertex3f(-2.0f + menu.background_scroll[0].x_pos, 2.0f + menu.background_scroll[0].y_pos,z_pos);
-   glTexCoord2i( 1, 0 );glVertex3f( 2.0f + menu.background_scroll[0].x_pos, 2.0f + menu.background_scroll[0].y_pos,z_pos);
-   glTexCoord2i( 1, 1 );glVertex3f( 2.0f + menu.background_scroll[0].x_pos,-2.0f + menu.background_scroll[0].y_pos,z_pos);
-   glEnd();
-   z_pos -= 0.01f;
-   glBindTexture( GL_TEXTURE_2D, texture[image.background_01].texture); //background
-   glLoadIdentity();
-   glBegin(GL_QUADS);
-   glTexCoord2i( 0, 1 );glVertex3f(-2.0f + menu.background_scroll[1].x_pos,-2.0f + menu.background_scroll[1].y_pos,z_pos);
-   glTexCoord2i( 0, 0 );glVertex3f(-2.0f + menu.background_scroll[1].x_pos, 2.0f + menu.background_scroll[1].y_pos,z_pos);
-   glTexCoord2i( 1, 0 );glVertex3f( 2.0f + menu.background_scroll[1].x_pos, 2.0f + menu.background_scroll[1].y_pos,z_pos);
-   glTexCoord2i( 1, 1 );glVertex3f( 2.0f + menu.background_scroll[1].x_pos,-2.0f + menu.background_scroll[1].y_pos,z_pos);
-   glEnd();
-
    //-------------------- Display menu -------------------------------
    z_pos -= 0.01f;
    //Menu logo

@@ -18,15 +18,6 @@
 const int MAX_BUTTONS = 16;
 const int MAX_LEVELS  = 16;
 
-struct background_scroll_type
-{
-   int   x_dir;
-   int   y_dir;
-   float x_pos;
-   float y_pos;
-   float scroll_rate;
-};
-
 struct button_type
 {
    bool  type_normal;
@@ -75,15 +66,14 @@ struct level_type
 struct menu_type
 {
    level_type             level[MAX_LEVELS];
+   int                    background_image;
    int                    current_button;
    int                    current_level;
    int                    last_sellect;
    float                  button_zoom_speed;
    float                  button_zoom_max;
-   background_scroll_type background_scroll[2];
 };
 
-int  background_process (void);
 int  menu_system_init   (void);
 int  menu_system_display(void);
 int  menu_system_process(void);
