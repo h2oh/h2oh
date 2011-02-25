@@ -51,7 +51,6 @@ char        *argv[0];
 
 int game_init(void)
 {
-   background_init();
    game.status_menu_active = true;
    game.status_game_active = false;
    game.status_quit_active = false;
@@ -82,6 +81,14 @@ int game_init(void)
    Mix_OpenAudio(config.audio_rate, AUDIO_S16, 2, config.audio_buffers);
    Mix_Volume(-1,config.audio_sound_volume);
    Mix_VolumeMusic(config.audio_music_volume);
+   SDL_Init(SDL_INIT_JOYSTICK);
+   SDL_Joystick *joystick;
+   SDL_JoystickEventState(SDL_ENABLE);
+   joystick = SDL_JoystickOpen(0);
+   game.joystick_sensitivity     = 6400;
+   game.mouse_button_delay       = 32;
+   game.mouse_button_delay_count = 0;
+   background_init();
    init_textures();
    init_sounds();
    init_music();
@@ -169,49 +176,10 @@ int init_gl(void)
 
 int background_process(void)
 {
-// -------------------------   background 0  -----------------------------------
-   if (game.background_scroll[0].x_dir == 0)
+   for (int count = 0;count < MAX_BACKGROUNDS+1;count++)//process backgrounds
    {
-      game.background_scroll[0].x_pos -= game.background_scroll[0].scroll_rate;
-      if (game.background_scroll[0].x_pos < 0.0f) game.background_scroll[0].x_dir = 1;
-   }
-   if (game.background_scroll[0].x_dir == 1)
-   {
-      game.background_scroll[0].x_pos += game.background_scroll[0].scroll_rate;
-      if (game.background_scroll[0].x_pos > 1.0f) game.background_scroll[0].x_dir = 0;
-   }
-
-   if (game.background_scroll[0].y_dir == 0)
-   {
-      game.background_scroll[0].y_pos -= game.background_scroll[0].scroll_rate;
-      if (game.background_scroll[0].y_pos < 0.0f) game.background_scroll[0].y_dir = 1;
-   }
-   if (game.background_scroll[0].y_dir == 1)
-   {
-      game.background_scroll[0].y_pos += game.background_scroll[0].scroll_rate;
-      if (game.background_scroll[0].y_pos > 0.75f) game.background_scroll[0].y_dir = 0;
-   }
-// -------------------------   background 1  -----------------------------------
-   if (game.background_scroll[1].x_dir == 0)
-   {
-      game.background_scroll[1].x_pos -= game.background_scroll[1].scroll_rate;
-      if (game.background_scroll[1].x_pos < 0.0f) game.background_scroll[1].x_dir = 1;
-   }
-   if (game.background_scroll[1].x_dir == 1)
-   {
-      game.background_scroll[1].x_pos += game.background_scroll[1].scroll_rate;
-      if (game.background_scroll[1].x_pos > 1.0f) game.background_scroll[1].x_dir = 0;
-   }
-
-   if (game.background_scroll[1].y_dir == 0)
-   {
-      game.background_scroll[1].y_pos -= game.background_scroll[1].scroll_rate;
-      if (game.background_scroll[1].y_pos < 0.0f) game.background_scroll[1].y_dir = 1;
-   }
-   if (game.background_scroll[1].y_dir == 1)
-   {
-      game.background_scroll[1].y_pos += game.background_scroll[1].scroll_rate;
-      if (game.background_scroll[1].y_pos > 0.75f) game.background_scroll[1].y_dir = 0;
+      game.background_scroll[count].x_pos -= game.background_scroll[count].scroll_rate;
+      if (game.background_scroll[count].x_pos <= -4.0f) game.background_scroll[count].x_pos = 4.0f;
    }
    return(1);
 }
@@ -222,12 +190,26 @@ int background_init    (void)
    game.background_scroll[0].y_dir        = 0;
    game.background_scroll[0].x_pos        = 0.0f;
    game.background_scroll[0].y_pos        = 0.0f;
-   game.background_scroll[0].scroll_rate  = 0.0005f;
-   game.background_scroll[1].x_dir        = 1;
-   game.background_scroll[1].y_dir        = 1;
-   game.background_scroll[1].x_pos        = 0.0f;
+   game.background_scroll[0].scroll_rate  = 0.005f;
+   game.background_scroll[0].image        = image.background_01;
+   game.background_scroll[1].x_dir        = 0;
+   game.background_scroll[1].y_dir        = 0;
+   game.background_scroll[1].x_pos        = 4.0f;
    game.background_scroll[1].y_pos        = 0.0f;
-   game.background_scroll[1].scroll_rate  = 0.001f;
+   game.background_scroll[1].scroll_rate  = 0.005f;
+   game.background_scroll[1].image        = image.background_01;
+   game.background_scroll[2].x_dir        = 0;
+   game.background_scroll[2].y_dir        = 0;
+   game.background_scroll[2].x_pos        = 0.0f;
+   game.background_scroll[2].y_pos        = 0.0f;
+   game.background_scroll[2].scroll_rate  = 0.0025f;
+   game.background_scroll[2].image        = image.background_00;
+   game.background_scroll[3].x_dir        = 0;
+   game.background_scroll[3].y_dir        = 0;
+   game.background_scroll[3].x_pos        = 4.0f;
+   game.background_scroll[3].y_pos        = 0.0f;
+   game.background_scroll[3].scroll_rate  = 0.0025f;
+   game.background_scroll[3].image        = image.background_00;
    return(1);
 };
 
@@ -334,9 +316,7 @@ int background_display (void)
        glEnd();
    }
 //--------------------------------------------------------------------------------------------------------------------------------------
-
     glPopMatrix();
-
     return(1);
 };
 

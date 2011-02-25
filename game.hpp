@@ -17,6 +17,8 @@
 
 #include <SDL/SDL.h>
 
+const int MAX_BACKGROUNDS = 4;
+
 struct background_scroll_type
 {
    int   x_dir;
@@ -24,6 +26,7 @@ struct background_scroll_type
    float x_pos;
    float y_pos;
    float scroll_rate;
+   int   image;
 };
 
 struct game_type
@@ -32,14 +35,21 @@ struct game_type
    bool      status_game_active;
    bool      status_quit_active;
    SDL_Event event;
+   bool      gamepad_button_0;
+   bool      gamepad_button_1;
+   bool      gamepad_button_2;
+   bool      gamepad_button_3;
    bool      mouse_button_left;
    bool      mouse_button_middle;
    bool      mouse_button_right;
+   int       mouse_button_delay;
+   int       mouse_button_delay_count;
    float     mouse_x;
    float     mouse_y;
    float     mouse_xrel;
    float     mouse_yrel;
-   background_scroll_type background_scroll[2];
+   int       joystick_sensitivity;
+   background_scroll_type background_scroll[MAX_BACKGROUNDS];
 };
 
 int game_init(void);
