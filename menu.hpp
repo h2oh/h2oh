@@ -15,51 +15,34 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-const int MAX_BUTTONS                   = 16;
-const int MAX_LEVELS                    = 16;
-const int MAX_HORIZONTAL_SELECT_OPTIONS = 16;
+const int MAX_BUTTONS        = 16;
+const int MAX_LEVELS         = 16;
+const int MAX_SELECT_OPTIONS = 32;
 
-struct horizontal_sellect_option_type
+struct select_option_type
 {
-   int active;
    int image;
    int image_highlighted;
-};
-
-struct slider_option_type
-{
-   int value;
 };
 
 struct button_type
 {
    bool                             type_normal;
-   bool                             type_toggle;
-   bool                             type_horizontal_sellect;
+   bool                             type_select;
    bool                             type_slider;
    float                            button_zoom;
+   int                              max_value;
+   int                              current_value;
+   select_option_type               select_option[MAX_SELECT_OPTIONS];
    int                              image;
    int                              image_highlighted;
-   int                              image_toggle_true;
-   int                              image_toggle_true_highlighted;
-   int                              image_toggle_false;
-   int                              image_toggle_false_highlighted;
-   int                              horizontal_sellect_no_of_options;
-   int                              horizontal_sellect_current_option;
-   horizontal_sellect_option_type   horizontal_sellect_option[MAX_HORIZONTAL_SELECT_OPTIONS];
-   int                              image_horizontal_sellect;
-   int                              image_horizontal_sellect_highlighted;
-   int                              image_horizontal_sellect_left;
-   int                              image_horizontal_sellect_left_highlighted;
-   int                              image_horizontal_sellect_right;
-   int                              image_horizontal_sellect_right_highlighted;
-   slider_option_type               slider_option;
-   int                              image_slider_bar;
-   int                              image_slider_bar_highlighted;
-   int                              image_slider_left;
-   int                              image_slider_left_highlighted;
-   int                              image_slider_right;
-   int                              image_slider_right_highlighted;
+   int                              image_left;
+   int                              image_left_highlighted;
+   int                              image_right;
+   int                              image_right_highlighted;
+   int                              image_bar_value;
+   int                              image_bar_under;
+   int                              image_help; //help messages? under logo / quit button? breif description of button / default setting? or a popup bubble?
 };
 
 struct logo_type

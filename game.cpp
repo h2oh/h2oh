@@ -56,7 +56,7 @@ int game_init(void)
    game.status_quit_active = false;
    load_default_config();
    init_log_file(App_LogF);
-   //load_config_file(App_ConF);
+   ///load_config_file(App_ConF);
    //----------------------------------- Start the PhysicsFS ----------------------
    //Log_File(App_Logf,"Starting PhysicsFS...");
    PHYSFS_init(argv[0]);
@@ -78,14 +78,30 @@ int game_init(void)
    //----------------------------------- SDL Audio --------------------------------
    SDL_Init(SDL_INIT_AUDIO);
    Mix_AllocateChannels(config.audio_channels);
-   Mix_OpenAudio(config.audio_rate, AUDIO_S16, 2, config.audio_buffers);
+   if (Mix_OpenAudio(config.audio_rate, AUDIO_S16SYS, 2, config.audio_buffers) < 0) write_log_file(App_LogF,"Error initializing SDL_Mixer.");
+   else write_log_file(App_LogF,"SDL_Mixer initialized succesfully.");
    Mix_Volume(-1,config.audio_sound_volume);
    Mix_VolumeMusic(config.audio_music_volume);
    SDL_Init(SDL_INIT_JOYSTICK);
    SDL_Joystick *joystick;
    SDL_JoystickEventState(SDL_ENABLE);
    joystick = SDL_JoystickOpen(0);
-   game.joystick_sensitivity     = 6400;
+   if (SDL_JoystickOpened(0) == 1)
+   {
+      config.gamepad_enabled        = true;
+      game.joystick_sensitivity     = 6400;
+      config.gamepad_no_buttons     = SDL_JoystickNumButtons(joystick);
+      if (config.gamepad_run_menu    > (config.gamepad_no_buttons - 1)) config.gamepad_run_menu    = config.gamepad_no_buttons - 1;
+      if (config.gamepad_jump_menu   > (config.gamepad_no_buttons - 1)) config.gamepad_jump_menu   = config.gamepad_no_buttons - 1;
+      if (config.gamepad_duck_menu   > (config.gamepad_no_buttons - 1)) config.gamepad_duck_menu   = config.gamepad_no_buttons - 1;
+      if (config.gamepad_select_menu > (config.gamepad_no_buttons - 1)) config.gamepad_select_menu = config.gamepad_no_buttons - 1;
+   }
+   else
+   {
+      config.gamepad_enabled        = false;
+      game.joystick_sensitivity     = 0;
+      config.gamepad_no_buttons     = 0;
+   }
    game.mouse_button_delay       = 32;
    game.mouse_button_delay_count = 0;
    background_init();
@@ -95,7 +111,6 @@ int game_init(void)
    game_load_resources();
    init_particles();
    init_gl();
-
    return(1);
 }
 
@@ -145,13 +160,12 @@ int game_process(void)
 
 int game_deinit(void)
 {
-
-
   save_config_file(App_ConF);
   kill_music();
   kill_sounds();
   kill_textures();
   PHYSFS_deinit();
+  Mix_Quit();
   SDL_Quit();
   return(1);
 }
@@ -160,6 +174,7 @@ int init_gl(void)
 {
   glViewport(0, 0,config.screen_resolution_x,config.screen_resolution_y);
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  glColor3f(1.0f,1.0f,1.0f);
   glClearDepth(1.0);
   glDepthFunc(GL_LESS);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
@@ -171,6 +186,18 @@ int init_gl(void)
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glEnable(GL_TEXTURE_2D);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+  glEnable(GL_COLOR_MATERIAL);
+  GLfloat diffuse_color[] = {1.f, 1.0f, 1.0f, 1.0f};
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_color);
+  GLfloat specular_color[] = {1.0f, 1.0f, 1.0f, 1.0f};
+  glMaterialfv(GL_FRONT, GL_SPECULAR, specular_color);
+  GLfloat shininess[] = {25};
+  glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
+  GLfloat emission[] = {0.05f,0.05f,0.05f};
+  glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission);
   return(1);
 }
 
