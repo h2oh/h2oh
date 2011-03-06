@@ -243,6 +243,8 @@ struct image_type
 
    int background_00;
    int background_01;
+   int background_02;
+   int menu_background_00;
    int particle_flake;
 };
 

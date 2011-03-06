@@ -27,6 +27,7 @@
 #include "config.hpp"
 #include "physics.hpp"
 #include "savegame.hpp"
+/*0A0A55*/
 
 extern config_type  config;
 extern sfx_type     sfx;
@@ -738,39 +739,6 @@ int menu_system_init(void)
     menu.level[level_count].button[button_count].image                               =  image.options_menu;
     menu.level[level_count].button[button_count].image_highlighted                   =  image.options_menu_highlighted;
     ///-------------Options - Gamepad menu init -----------------------
-/*
-Music Volume
-Sound Volume
-Audio Rate       22050 - 44100 - 44800
-Audio Buffer     1024  - 2048  - 4096  - 8192
-Channels         4 - 8 - 16 - 32
-
-Resolution       640x480 - 600x680 - 1024x768 - 1280x1024 - 1366x768 - 1440x900 - 1680x1050 - 1920x1080
-Fullscreen       Enabled - Disabled
-BBP              16 - 32
-Double Buffering Enabled - Disabled
-Alpha Blending   Enabled - Disabled
-
-Movement         WASD - Arrows
-Key - Run        A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z
-Key - Jump       A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z
-Key - Duck       A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z
-Key - Select     A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z
-
-Invert Mouse
-Sensitivity
-Swap Buttons
--
--
-
-Invert Axes      0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
-Button - Run     0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
-Button - Jump    0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
-Button - Duck    0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
-Button - Select  0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
-
-0A0A55
-*/
     level_count  = 8;//level 8
     button_count = 0;
     menu.level[level_count].position_x                                               =  menu.level[0].position_x;
@@ -944,7 +912,7 @@ Button - Select  0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - 11 - 12
     menu.level[level_count].button[button_count].image                               =  image.options_menu;
     menu.level[level_count].button[button_count].image_highlighted                   =  image.options_menu_highlighted;
     //menu general settings ---------------------------------------------------------------------------------
-    menu.background_image                                                            = image.background_01;
+    menu.background_image                                                            = image.menu_background_00;
     game.mouse_button_left                                                           = false;
     game.mouse_button_middle                                                         = false;
     game.mouse_button_right                                                          = false;
@@ -971,6 +939,20 @@ int menu_system_display(void)
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
    glDisable(GL_DEPTH_TEST);
+
+//---------------------- temp deleteme background!!!!!
+   z_pos -= 0.01f;
+   glBindTexture( GL_TEXTURE_2D, texture[image.background_02].texture);
+   glLoadIdentity();
+   glBegin(GL_QUADS);
+   glNormal3d(0, 0, 1);
+   glTexCoord2i(0,0);glVertex3f( 1.0f, 1.0f,z_pos);
+   glTexCoord2i(1,0);glVertex3f(-1.0f, 1.0f,z_pos);
+   glTexCoord2i(1,1);glVertex3f(-1.0f,-1.0f,z_pos);
+   glTexCoord2i(0,1);glVertex3f( 1.0f,-1.0f,z_pos);
+   glEnd();
+//---------------------- temp deleteme background!!!!!
+
    //-------------------- Display menu -------------------------------
    //menu background
    z_pos -= 0.01f;

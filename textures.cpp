@@ -248,6 +248,8 @@ int load_textures(void)
    load_texture(texture_count,"data/textures/menu/z_highlighted.png");image.z_highlighted = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_00.png");image.background_00 = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/backgrounds/background_01.png");image.background_01 = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/backgrounds/background_02.png");image.background_02 = texture_count;texture_count++;
+   load_texture(texture_count,"data/textures/menu/menu_background_00.png");image.menu_background_00 = texture_count;texture_count++;
    load_texture(texture_count,"data/textures/particles/flake.png");image.particle_flake = texture_count;texture_count++;
    return(1);
 };
