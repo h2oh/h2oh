@@ -33,6 +33,7 @@ struct button_type
    float                            button_zoom;
    int                              max_value;
    int                              current_value;
+   int                              mod_value;
    select_option_type               select_option[MAX_SELECT_OPTIONS];
    int                              image;
    int                              image_highlighted;

@@ -46,20 +46,20 @@ int menu_system_init(void)
     ///--------------main menu init -----------------------
     level_count  = 0;//level 0
     button_count = 0;
-    menu.level[level_count].no_of_buttons                                            =  5;
-    menu.level[level_count].button_spacing                                           =  0.025f;
-    menu.level[level_count].button_width                                             =  1.00f;
-    menu.level[level_count].button_height                                            =  0.20f;
-    menu.level[level_count].position_x                                               =  0.00f;
-    menu.level[level_count].position_y                                               =  1.00f-(menu.level[level_count].button_spacing*3);
     menu.level[level_count].type_normal                                              =  true;
     menu.level[level_count].type_button_zoom                                         =  true;
     menu.level[level_count].logo.drag                                                =  false;
     menu.level[level_count].logo.image                                               =  image.main_logo;
-    menu.level[level_count].logo.height                                              =  0.40f;
-    menu.level[level_count].logo.width                                               =  1.20f;
+    menu.level[level_count].no_of_buttons                                            =  5;
+    menu.level[level_count].position_x                                               =  0.00f;
+    menu.level[level_count].position_y                                               =  1.00f-(menu.level[level_count].no_of_buttons*0.01f);
+    menu.level[level_count].logo.width                                               =  (0.15f*menu.level[level_count].no_of_buttons);
+    menu.level[level_count].logo.height                                              =  (menu.level[level_count].logo.width/2);
     menu.level[level_count].logo.position_x                                          =  menu.level[level_count].position_x;
     menu.level[level_count].logo.position_y                                          =  menu.level[level_count].position_y-(menu.level[level_count].logo.height/2);
+    menu.level[level_count].button_width                                             =  ((menu.level[level_count].logo.width/6)*5);
+    menu.level[level_count].button_height                                            =  (menu.level[level_count].button_width/3);
+    menu.level[level_count].button_spacing                                           =  (menu.level[level_count].button_height/8);
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
@@ -245,6 +245,7 @@ int menu_system_init(void)
     menu.level[level_count].button[button_count].image                               =  image.music_volume;
     menu.level[level_count].button[button_count].image_highlighted                   =  image.music_volume_highlighted;
     menu.level[level_count].button[button_count].max_value                           =  128;
+    menu.level[level_count].button[button_count].mod_value                           =  (menu.level[level_count].button[button_count].max_value/10);
     menu.level[level_count].button[button_count].current_value                       =  config.audio_music_volume;
     menu.level[level_count].button[button_count].type_slider                         =  true;
     menu.level[level_count].button[button_count].type_select                         =  false;
@@ -253,6 +254,7 @@ int menu_system_init(void)
     menu.level[level_count].button[button_count].image                               =  image.sound_volume;
     menu.level[level_count].button[button_count].image_highlighted                   =  image.sound_volume_highlighted;
     menu.level[level_count].button[button_count].max_value                           =  128;
+    menu.level[level_count].button[button_count].mod_value                           =  (menu.level[level_count].button[button_count].max_value/10);
     menu.level[level_count].button[button_count].current_value                       =  config.audio_sound_volume;
     menu.level[level_count].button[button_count].type_slider                         =  true;
     menu.level[level_count].button[button_count].type_select                         =  false;
@@ -1105,7 +1107,7 @@ int menu_system_display(void)
     }
    draw_particles();/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    glPopMatrix();
-   SDL_GL_SwapBuffers();
+   SDL_GL_SwapBuffers();/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    return(1);
 }
 
@@ -1117,6 +1119,22 @@ bool mouse_over_button(int level_count, int button_count, float mouse_x, float m
     && (mouse_y < (menu.level[menu.current_level].logo.position_y-menu.level[menu.current_level].logo.height)-((menu.level[menu.current_level].button_spacing+menu.level[menu.current_level].button_height)*button_count)+(menu.level[menu.current_level].button_height/2)+menu.level[menu.current_level].button[button_count].button_zoom))
    return(true);
    else return(false);
+};
+
+int mouse_over_select(int level_count, int button_count, float mouse_x, float mouse_y)
+{
+   int return_value = 0;
+   if ((mouse_x <  menu.level[level_count].position_x-((menu.level[level_count].button_width/10)*3)+menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_x >  menu.level[level_count].position_x-( menu.level[level_count].button_width/2)    -menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_y < (menu.level[level_count].logo.position_y-menu.level[level_count].logo.height)-((menu.level[level_count].button_spacing+menu.level[level_count].button_height)*button_count)+(menu.level[level_count].button_height/2)+menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_y > (menu.level[level_count].logo.position_y-menu.level[level_count].logo.height)-((menu.level[level_count].button_spacing+menu.level[level_count].button_height)*button_count)-(menu.level[level_count].button_height/2)-menu.level[level_count].button[button_count].button_zoom))
+   return_value = 1;//left arrow
+   if ((mouse_x <  menu.level[level_count].position_x+( menu.level[level_count].button_width/2)    +menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_x >  menu.level[level_count].position_x+((menu.level[level_count].button_width/10)*3)-menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_y < (menu.level[level_count].logo.position_y-menu.level[level_count].logo.height)-((menu.level[level_count].button_spacing+menu.level[level_count].button_height)*button_count)+(menu.level[level_count].button_height/2)+menu.level[level_count].button[button_count].button_zoom)
+    && (mouse_y > (menu.level[level_count].logo.position_y-menu.level[level_count].logo.height)-((menu.level[level_count].button_spacing+menu.level[level_count].button_height)*button_count)-(menu.level[level_count].button_height/2)-menu.level[level_count].button[button_count].button_zoom))
+   return_value = 2;//right arrow
+   return(return_value);
 };
 
 bool mouse_over_logo(int level_count, float mouse_x, float mouse_y)
@@ -1162,7 +1180,7 @@ int menu_system_process(void)
            game.mouse_y      = res_to_gl(game.event.motion.y,config.screen_resolution_y);
            game.mouse_xrel   = res_to_gl(game.event.motion.xrel,config.screen_resolution_x);
            game.mouse_yrel   = res_to_gl(game.event.motion.yrel,config.screen_resolution_y);
-           if (!config.screen_fullscreen) game.mouse_y *= -1;
+           game.mouse_y *= -1;
        }
        if (game.event.type == SDL_MOUSEBUTTONUP)
        {
@@ -1251,7 +1269,15 @@ int menu_system_process(void)
               menu.current_button = button_count;
               play_sound(sfx.menu_move);
            }
-           if ((game.mouse_button_left) && (menu.last_sellect != button_count)) menu.option_select = true;
+           if (menu.level[menu.current_level].button[button_count].type_normal)
+           {
+              if ((game.mouse_button_left) && (menu.last_sellect != button_count)) menu.option_select = true;
+           }
+           if ((menu.level[menu.current_level].button[button_count].type_slider) || (menu.level[menu.current_level].button[button_count].type_select))
+           {
+              if ((mouse_over_select(menu.current_level,button_count,game.mouse_x,game.mouse_y)==1) && (game.mouse_button_left)) menu.option_left  = true;
+              if ((mouse_over_select(menu.current_level,button_count,game.mouse_x,game.mouse_y)==2) && (game.mouse_button_left)) menu.option_right = true;
+           }
         }
     }
     //-------------------------- joystick / gamepad events --------------------------------------------
@@ -1363,9 +1389,11 @@ int menu_system_process(void)
 
    if (menu.option_left)
    {
-      menu.level[menu.current_level].button[menu.current_button].current_value--;
+      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value--;
+      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value -= menu.level[menu.current_level].button[menu.current_button].mod_value;
       if (menu.level[menu.current_level].button[menu.current_button].current_value < 0) menu.level[menu.current_level].button[menu.current_button].current_value = 0;
       if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.option_left = false;
+      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.option_left = false;
       switch (menu.current_level)
       {
          case 4: //options - audio menu
@@ -1396,9 +1424,11 @@ int menu_system_process(void)
 
    if (menu.option_right)
    {
-      menu.level[menu.current_level].button[menu.current_button].current_value++;
+      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value++;
+      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value += menu.level[menu.current_level].button[menu.current_button].mod_value;
       if (menu.level[menu.current_level].button[menu.current_button].current_value > menu.level[menu.current_level].button[menu.current_button].max_value) menu.level[menu.current_level].button[menu.current_button].current_value = menu.level[menu.current_level].button[menu.current_button].max_value;
       if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.option_right = false;
+      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.option_right = false;
       switch (menu.current_level)
       {
          case 4: //options - audio menu
