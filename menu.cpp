@@ -1033,7 +1033,7 @@ int menu_system_display(void)
             glTexCoord2i(0,1);glVertex3f(menu.level[menu.current_level].position_x-((menu.level[menu.current_level].button_width/10)*3)-menu.level[menu.current_level].button[button_count].button_zoom,(menu.level[menu.current_level].logo.position_y-menu.level[menu.current_level].logo.height)-((menu.level[menu.current_level].button_spacing+menu.level[menu.current_level].button_height)*button_count)                                                 -menu.level[menu.current_level].button[button_count].button_zoom, t_z_pos);
             glEnd();
          //left arrow
-         if (menu.current_button == button_count) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left_highlighted].texture);
+         if ((menu.current_button == button_count) && (menu.level[menu.current_level].button[button_count].current_direction == 1)) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left_highlighted].texture);
          else glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left].texture);
             glLoadIdentity();
             glBegin(GL_QUADS);
@@ -1044,7 +1044,7 @@ int menu_system_display(void)
             glTexCoord2i(0,1);glVertex3f(menu.level[menu.current_level].position_x-( menu.level[menu.current_level].button_width/2)    -menu.level[menu.current_level].button[button_count].button_zoom,(menu.level[menu.current_level].logo.position_y-menu.level[menu.current_level].logo.height)-((menu.level[menu.current_level].button_spacing+menu.level[menu.current_level].button_height)*button_count)-(menu.level[menu.current_level].button_height/2)-menu.level[menu.current_level].button[button_count].button_zoom, t_z_pos);
             glEnd();
          //right arrow
-         if (menu.current_button == button_count) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right_highlighted].texture);
+         if ((menu.current_button == button_count) && (menu.level[menu.current_level].button[button_count].current_direction == 2)) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right_highlighted].texture);
          else glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right].texture);
             glLoadIdentity();
             glBegin(GL_QUADS);
@@ -1082,7 +1082,7 @@ int menu_system_display(void)
             glTexCoord2i(0,1);glVertex3f(menu.level[menu.current_level].position_x-((menu.level[menu.current_level].button_width/10)*3)-menu.level[menu.current_level].button[button_count].button_zoom,(menu.level[menu.current_level].logo.position_y-menu.level[menu.current_level].logo.height)-((menu.level[menu.current_level].button_spacing+menu.level[menu.current_level].button_height)*button_count)                                                 -menu.level[menu.current_level].button[button_count].button_zoom, t_z_pos);
             glEnd();
          //left arrow
-         if (menu.current_button == button_count) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left_highlighted].texture);
+         if ((menu.current_button == button_count) && (menu.level[menu.current_level].button[button_count].current_direction == 1)) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left_highlighted].texture);
          else glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_left].texture);
             glLoadIdentity();
             glBegin(GL_QUADS);
@@ -1093,7 +1093,7 @@ int menu_system_display(void)
             glTexCoord2i(0,1);glVertex3f(menu.level[menu.current_level].position_x-( menu.level[menu.current_level].button_width/2)    -menu.level[menu.current_level].button[button_count].button_zoom,(menu.level[menu.current_level].logo.position_y-menu.level[menu.current_level].logo.height)-((menu.level[menu.current_level].button_spacing+menu.level[menu.current_level].button_height)*button_count)-(menu.level[menu.current_level].button_height/2)-menu.level[menu.current_level].button[button_count].button_zoom, t_z_pos);
             glEnd();
          //right arrow
-         if (menu.current_button == button_count) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right_highlighted].texture);
+         if ((menu.current_button == button_count) && (menu.level[menu.current_level].button[button_count].current_direction == 2)) glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right_highlighted].texture);
          else glBindTexture( GL_TEXTURE_2D, texture[menu.level[menu.current_level].button[button_count].image_right].texture);
             glLoadIdentity();
             glBegin(GL_QUADS);
@@ -1152,7 +1152,7 @@ int menu_system_process(void)
     game.mouse_button_delay_count++;
     if (game.mouse_button_delay_count > game.mouse_button_delay) game.mouse_button_delay_count = game.mouse_button_delay;
     int button_count = 0;
-    play_music(song.menu_001);/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
+    play_music(song.menu_001);config.audio_current_song = song.menu_001;/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
     background_process();///      future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
     process_particles();///       future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
     if(menu.level[menu.current_level].type_button_zoom) //if button zoom type, process zoom
@@ -1176,10 +1176,10 @@ int menu_system_process(void)
     //-------------------- Mouse events-------------------------------
        if (game.event.type == SDL_MOUSEMOTION)
        {
-           game.mouse_x      = res_to_gl(game.event.motion.x,config.screen_resolution_x);
-           game.mouse_y      = res_to_gl(game.event.motion.y,config.screen_resolution_y);
-           game.mouse_xrel   = res_to_gl(game.event.motion.xrel,config.screen_resolution_x);
-           game.mouse_yrel   = res_to_gl(game.event.motion.yrel,config.screen_resolution_y);
+           game.mouse_x      = res_to_gl(game.event.motion.x,config.mouse_resolution_x);
+           game.mouse_y      = res_to_gl(game.event.motion.y,config.mouse_resolution_y);
+           game.mouse_xrel   = res_to_gl(game.event.motion.xrel,config.mouse_resolution_x);
+           game.mouse_yrel   = res_to_gl(game.event.motion.yrel,config.mouse_resolution_y);
            game.mouse_y *= -1;
        }
        if (game.event.type == SDL_MOUSEBUTTONUP)
@@ -1259,6 +1259,10 @@ int menu_system_process(void)
             menu.level[menu.current_level].logo.drag = false;
         }
     }
+        for(button_count = 0;button_count<menu.level[menu.current_level].no_of_buttons+1;button_count++)
+        {
+           menu.level[menu.current_level].button[button_count].current_direction = mouse_over_select(menu.current_level,button_count,game.mouse_x,game.mouse_y);
+        }
     if (!menu.level[menu.current_level].logo.drag)
     {
         for(button_count = 0;button_count<menu.level[menu.current_level].no_of_buttons+1;button_count++)
@@ -1275,8 +1279,16 @@ int menu_system_process(void)
            }
            if ((menu.level[menu.current_level].button[button_count].type_slider) || (menu.level[menu.current_level].button[button_count].type_select))
            {
-              if ((mouse_over_select(menu.current_level,button_count,game.mouse_x,game.mouse_y)==1) && (game.mouse_button_left)) menu.option_left  = true;
-              if ((mouse_over_select(menu.current_level,button_count,game.mouse_x,game.mouse_y)==2) && (game.mouse_button_left)) menu.option_right = true;
+              if ((menu.level[menu.current_level].button[button_count].current_direction==1) && (game.mouse_button_left))
+              {
+                 menu.option_select  = false;
+                 menu.option_left    = true;
+              }
+              if ((menu.level[menu.current_level].button[button_count].current_direction==2) && (game.mouse_button_left))
+              {
+                 menu.option_select  = false;
+                 menu.option_right   = true;
+              }
            }
         }
     }
@@ -1387,48 +1399,35 @@ int menu_system_process(void)
       else play_sound(sfx.menu_move);
    };
 
-   if (menu.option_left)
+   if ((menu.option_left) || (menu.option_right))
    {
-      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value--;
-      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value -= menu.level[menu.current_level].button[menu.current_button].mod_value;
-      if (menu.level[menu.current_level].button[menu.current_button].current_value < 0) menu.level[menu.current_level].button[menu.current_button].current_value = 0;
-      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.option_left = false;
-      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.option_left = false;
-      switch (menu.current_level)
+      play_sound(sfx.menu_move);
+      if (menu.option_left)
       {
-         case 4: //options - audio menu
-         switch (menu.current_button)
-         {
-            case 0: //music volume
-               config.audio_music_volume = menu.level[menu.current_level].button[menu.current_button].current_value;
-               Mix_VolumeMusic(config.audio_music_volume);
-            break;
-            case 1: //sound volume
-               config.audio_sound_volume = menu.level[menu.current_level].button[menu.current_button].current_value;
-               Mix_Volume(-1,config.audio_sound_volume);
-            break;
-            case 2: //Audio rate
-               config.audio_rate_menu = menu.level[menu.current_level].button[menu.current_button].current_value;
-               if (config.audio_rate_menu = 0) config.audio_rate = 22050;
-               if (config.audio_rate_menu = 1) config.audio_rate = 44100;
-               if (config.audio_rate_menu = 2) config.audio_rate = 44800;
-            break;
-            default:
-            break;
-         }
-         break;
-         default:
-         break;
-     }
-   }
-
-   if (menu.option_right)
-   {
-      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value++;
-      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value += menu.level[menu.current_level].button[menu.current_button].mod_value;
-      if (menu.level[menu.current_level].button[menu.current_button].current_value > menu.level[menu.current_level].button[menu.current_button].max_value) menu.level[menu.current_level].button[menu.current_button].current_value = menu.level[menu.current_level].button[menu.current_button].max_value;
+         if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value--;
+         if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value -= menu.level[menu.current_level].button[menu.current_button].mod_value;
+         if (menu.level[menu.current_level].button[menu.current_button].current_value < 0) menu.level[menu.current_level].button[menu.current_button].current_value = 0;
+         menu.level[menu.current_level].button[menu.current_button].current_direction = 1;
+      }
+      if (menu.option_right)
+      {
+         if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value++;
+         if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.level[menu.current_level].button[menu.current_button].current_value += menu.level[menu.current_level].button[menu.current_button].mod_value;
+         if (menu.level[menu.current_level].button[menu.current_button].current_value > menu.level[menu.current_level].button[menu.current_button].max_value) menu.level[menu.current_level].button[menu.current_button].current_value = menu.level[menu.current_level].button[menu.current_button].max_value;
+         menu.level[menu.current_level].button[menu.current_button].current_direction = 2;
+      }
+      if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.option_left  = false;
       if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.option_right = false;
+      if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.option_left  = false;
       if (menu.level[menu.current_level].button[menu.current_button].type_slider) menu.option_right = false;
+      game.mouse_button_left   = false;
+      game.mouse_button_middle = false;
+      game.mouse_button_right  = false;
+      game.gamepad_button_0    = false;
+      game.gamepad_button_1    = false;
+      game.gamepad_button_2    = false;
+      game.gamepad_button_3    = false;
+      menu.option_select       = false;
       switch (menu.current_level)
       {
          case 4: //options - audio menu
@@ -1448,6 +1447,80 @@ int menu_system_process(void)
                if (config.audio_rate_menu = 1) config.audio_rate = 44100;
                if (config.audio_rate_menu = 2) config.audio_rate = 44800;
             break;
+            case 3: //Audio buffers
+               config.audio_buffers_menu = menu.level[menu.current_level].button[menu.current_button].current_value;
+               if (config.audio_buffers_menu = 0) config.audio_buffers = 1024;
+               if (config.audio_buffers_menu = 1) config.audio_buffers = 2048;
+               if (config.audio_buffers_menu = 2) config.audio_buffers = 4096;
+               if (config.audio_buffers_menu = 3) config.audio_buffers = 8192;
+            break;
+            case 4: //Audio channels
+               config.audio_channels_menu = menu.level[menu.current_level].button[menu.current_button].current_value;
+               if (config.audio_channels_menu = 0) config.audio_channels = 4;
+               if (config.audio_channels_menu = 1) config.audio_channels = 8;
+               if (config.audio_channels_menu = 2) config.audio_channels = 16;
+               if (config.audio_channels_menu = 3) config.audio_channels = 32;
+            break;
+            default:
+            break;
+         }
+         case 5: //options - graphics menu
+         switch (menu.current_button)
+         {
+            case 0: //toggle fullscreen
+               config.screen_fullscreen_menu = menu.level[menu.current_level].button[menu.current_button].current_value;
+               if (config.screen_fullscreen_menu == 0) config.screen_fullscreen = false;
+               if (config.screen_fullscreen_menu == 1) config.screen_fullscreen = true;
+            break;
+            case 1: //
+               config.screen_resolution_menu = menu.level[menu.current_level].button[menu.current_button].current_value;
+               if (config.screen_resolution_menu == 0)
+               {
+                   config.screen_resolution_x = 640;
+                   config.screen_resolution_y = 480;
+               }
+               if (config.screen_resolution_menu == 1)
+               {
+                   config.screen_resolution_x = 800;
+                   config.screen_resolution_y = 600;
+               }
+               if (config.screen_resolution_menu == 2)
+               {
+                   config.screen_resolution_x = 1024;
+                   config.screen_resolution_y = 768;
+               }
+               if (config.screen_resolution_menu == 3)
+               {
+                   config.screen_resolution_x = 1280;
+                   config.screen_resolution_y = 1024;
+               }
+               if (config.screen_resolution_menu == 4)
+               {
+                   config.screen_resolution_x = 1366;
+                   config.screen_resolution_y = 768;
+               }
+               if (config.screen_resolution_menu == 5)
+               {
+                   config.screen_resolution_x = 1440;
+                   config.screen_resolution_y = 900;
+               }
+               if (config.screen_resolution_menu == 6)
+               {
+                   config.screen_resolution_x = 1680;
+                   config.screen_resolution_y = 1050;
+               }
+               if (config.screen_resolution_menu == 7)
+               {
+                   config.screen_resolution_x = 1920;
+                   config.screen_resolution_y = 1080;
+               }
+            break;
+            case 2: //
+            break;
+            case 3: //
+            break;
+            case 4: //
+            break;
             default:
             break;
          }
@@ -1456,7 +1529,6 @@ int menu_system_process(void)
          break;
      }
    }
-
    if (menu.option_escape)
    {
       game.mouse_button_left   = false;
@@ -1685,20 +1757,23 @@ int menu_system_process(void)
          case 4: //Options - audio menu
          switch (menu.current_button)
          {
-            case 0: //audio
+            case 0: //music volume
 
             break;
-            case 1: //Graphics
+            case 1: //sound volume
 
             break;
-            case 2: //Keyboard
-
+            case 2: //rate
+               re_init_audio();
+               play_sound(sfx.menu_select);
             break;
-            case 3: //Mouse
-
+            case 3: //buffers
+               re_init_audio();
+               play_sound(sfx.menu_select);
             break;
-            case 4: //Gamepad
-
+            case 4: //channels
+               re_init_audio();
+               play_sound(sfx.menu_select);
             break;
             case 5: //back to options menu
                menu.current_level       = 3;
@@ -1711,20 +1786,20 @@ int menu_system_process(void)
          case 5: //Options - graphics menu
          switch (menu.current_button)
          {
-            case 0: //audio
-
+            case 0: //fullscreen
+               re_init_graphics();
             break;
-            case 1: //Graphics
-
+            case 1: //resolution
+               re_init_graphics();
             break;
-            case 2: //Keyboard
-
+            case 2: //bbp
+               re_init_graphics();
             break;
-            case 3: //Mouse
-
+            case 3: //alpha blending
+               re_init_graphics();
             break;
-            case 4: //Gamepad
-
+            case 4: //double buffering
+               re_init_graphics();
             break;
             case 5: //back to options menu
                menu.current_level       = 3;

@@ -41,6 +41,7 @@ bool load_default_config(void)
    config.audio_buffers                 = 2048;
    config.audio_music_volume            = 16;
    config.audio_sound_volume            = 32;
+   config.audio_current_song            = 0;
    config.keyboard_movement_menu        = 0;
    config.keyboard_run_menu             = 8;
    config.keyboard_jump_menu            = 14;
@@ -53,6 +54,8 @@ bool load_default_config(void)
    config.gamepad_invert_axes           = 1;
    config.gamepad_no_buttons            = 0;
    config.gamepad_enabled               = false;
+   config.mouse_resolution_x            = config.screen_resolution_x;
+   config.mouse_resolution_y            = config.screen_resolution_y;
    return(1);
 }
 

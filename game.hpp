@@ -57,6 +57,8 @@ int game_load_resources();
 int game_display(void);
 int game_process(void);
 int game_deinit(void);
+int re_init_audio(void);
+int re_init_graphics(void);
 int init_gl(void);
 int background_init    (void);
 int background_process (void);

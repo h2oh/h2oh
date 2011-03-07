@@ -69,7 +69,8 @@ int game_init(void)
    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTTHREAD);
    if (config.screen_fullscreen) SDL_SetVideoMode(config.screen_resolution_x,config.screen_resolution_y,config.screen_bbp,SDL_OPENGL | SDL_FULLSCREEN);
    else                          SDL_SetVideoMode(config.screen_resolution_x,config.screen_resolution_y,config.screen_bbp,SDL_OPENGL);
-   if (config.screen_double_buffering) SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+   if  (config.screen_double_buffering) SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+   if (!config.screen_double_buffering) SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 0 );
    App_Icon_Surface = SDL_LoadBMP(App_Icon);
    colorkey = SDL_MapRGB(App_Icon_Surface->format, 255, 0, 255);
    SDL_SetColorKey(App_Icon_Surface, SDL_SRCCOLORKEY, colorkey);
@@ -167,6 +168,37 @@ int game_deinit(void)
   PHYSFS_deinit();
   Mix_Quit();
   SDL_Quit();
+  return(1);
+}
+
+int re_init_audio(void)
+{
+   Mix_HaltMusic();
+   Mix_CloseAudio();
+   kill_music();
+   SDL_Init(SDL_INIT_AUDIO);
+   Mix_AllocateChannels(config.audio_channels);
+   if (Mix_OpenAudio(config.audio_rate, AUDIO_S16SYS, 2, config.audio_buffers) < 0) write_log_file(App_LogF,"Error initializing SDL_Mixer.");
+   else write_log_file(App_LogF,"SDL_Mixer initialized succesfully.");
+   Mix_Volume(-1,config.audio_sound_volume);
+   Mix_VolumeMusic(config.audio_music_volume);
+   init_music();
+   load_music();
+   play_music(config.audio_current_song);
+   return(1);
+};
+
+int re_init_graphics(void)
+{
+   kill_textures();
+   if (config.screen_fullscreen == true ) SDL_SetVideoMode(config.screen_resolution_x,config.screen_resolution_y,config.screen_bbp,SDL_OPENGL | SDL_FULLSCREEN);
+   if (config.screen_fullscreen == false) SDL_SetVideoMode(config.screen_resolution_x,config.screen_resolution_y,config.screen_bbp,SDL_OPENGL);;
+   if  (config.screen_double_buffering) SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+   if (!config.screen_double_buffering) SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 0 );
+   init_gl();
+   load_textures();
+   config.mouse_resolution_x = config.screen_resolution_x;
+   config.mouse_resolution_y = config.screen_resolution_y;
   return(1);
 }
 
