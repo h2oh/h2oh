@@ -56,7 +56,7 @@ int game_init(void)
    game.status_quit_active = false;
    load_default_config();
    init_log_file(App_LogF);
-   ///load_config_file(App_ConF);
+   load_config_file(App_ConF);
    //----------------------------------- Start the PhysicsFS ----------------------
    //Log_File(App_Logf,"Starting PhysicsFS...");
    PHYSFS_init(argv[0]);

@@ -20,7 +20,7 @@
 	"menu.hpp"
 	"sound.hpp"
 
-1299490280 source:c:\_svn_\h2oh\trunk\menu.cpp
+1299504268 source:c:\_svn_\h2oh\trunk\menu.cpp
 	<SDL/SDL.h>
 	<gl/gl.h>
 	"menu.hpp"
@@ -37,7 +37,7 @@
 1299488177 c:\_svn_\h2oh\trunk\config.hpp
 	<SDL/SDL.h>
 
-1299486148 c:\_svn_\h2oh\trunk\menu.hpp
+1299503860 c:\_svn_\h2oh\trunk\menu.hpp
 
 1299487615 c:\_svn_\h2oh\trunk\game.hpp
 	<SDL/SDL.h>

@@ -48,6 +48,7 @@ int menu_system_init(void)
     button_count = 0;
     menu.level[level_count].type_normal                                              =  true;
     menu.level[level_count].type_button_zoom                                         =  true;
+    menu.level[level_count].type_button_fade                                         =  true;
     menu.level[level_count].logo.drag                                                =  false;
     menu.level[level_count].logo.image                                               =  image.main_logo;
     menu.level[level_count].no_of_buttons                                            =  5;
@@ -63,6 +64,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -96,6 +98,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.load_game_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -105,6 +108,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -138,6 +142,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.save_game_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -147,6 +152,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -180,6 +186,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.options_menu_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -189,6 +196,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -222,6 +230,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.audio_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -231,6 +240,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -319,6 +329,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.graphics_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -328,6 +339,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -424,6 +436,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.keyboard_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -433,6 +446,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -709,6 +723,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.mouse_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -718,6 +733,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -751,6 +767,7 @@ int menu_system_init(void)
     menu.level[level_count].button_height                                            =  menu.level[0].button_height;
     menu.level[level_count].type_normal                                              =  menu.level[0].type_normal;
     menu.level[level_count].type_button_zoom                                         =  menu.level[0].type_button_zoom;
+    menu.level[level_count].type_button_fade                                         =  menu.level[0].type_button_fade;
     menu.level[level_count].logo.drag                                                =  menu.level[0].logo.drag;
     menu.level[level_count].logo.image                                               =  image.gamepad_highlighted;
     menu.level[level_count].logo.height                                              =  menu.level[0].logo.height;
@@ -760,6 +777,7 @@ int menu_system_init(void)
     for (button_count=0;button_count<MAX_BUTTONS+1;button_count++)
     {
        menu.level[level_count].button[button_count].button_zoom                      =  0.00f;
+       menu.level[level_count].button[button_count].button_fade                      =  menu.button_fade_max;
        menu.level[level_count].button[button_count].type_normal                      =  true;
        menu.level[level_count].button[button_count].type_select                      =  false;
        menu.level[level_count].button[button_count].type_slider                      =  false;
@@ -923,6 +941,8 @@ int menu_system_init(void)
     menu.current_button                                                              = 0;
     menu.button_zoom_speed                                                           = 0.01f;
     menu.button_zoom_max                                                             = menu.level[level_count].button_spacing * 1.0;
+    menu.button_fade_speed                                                           = 0.02f;
+    menu.button_fade_max                                                             = 0.6f;
     menu.option_select                                                               = false;
     menu.option_escape                                                               = false;
     menu.option_up                                                                   = false;
@@ -982,6 +1002,7 @@ int menu_system_display(void)
    z_pos -= 0.03f;
    for(button_count = 0;button_count < menu.level[menu.current_level].no_of_buttons+1; button_count++)
    {
+      glColor4f(1.0f,1.0f,1.0f,menu.level[menu.current_level].button[button_count].button_fade);
       if (menu.level[menu.current_level].button[button_count].type_normal)//normal button
       {
          if (menu.current_button == button_count) t_z_pos = z_pos -= 0.01f;
@@ -1168,6 +1189,22 @@ int menu_system_process(void)
            {
                menu.level[menu.current_level].button[button_count].button_zoom -= menu.button_zoom_speed;
                if(menu.level[menu.current_level].button[button_count].button_zoom < 0.0f) menu.level[menu.current_level].button[button_count].button_zoom = 0.0f;
+           }
+       }
+    }
+    if(menu.level[menu.current_level].type_button_fade) //if button fade type, process fade
+    {
+       for(int button_count = 0;button_count < menu.level[menu.current_level].no_of_buttons+1; button_count++)
+       {
+           if(menu.current_button == button_count)
+           {
+               menu.level[menu.current_level].button[button_count].button_fade += menu.button_fade_speed;
+               if(menu.level[menu.current_level].button[button_count].button_fade > 1.0f) menu.level[menu.current_level].button[button_count].button_fade = 1.0f;
+           }
+           else
+           {
+               menu.level[menu.current_level].button[button_count].button_fade -= menu.button_fade_speed;
+               if(menu.level[menu.current_level].button[button_count].button_fade < menu.button_fade_max) menu.level[menu.current_level].button[button_count].button_fade = menu.button_fade_max;
            }
        }
     }

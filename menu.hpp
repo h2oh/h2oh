@@ -31,6 +31,7 @@ struct button_type
    bool                             type_select;
    bool                             type_slider;
    float                            button_zoom;
+   float                            button_fade;
    int                              max_value;
    int                              mod_value;
    int                              current_value;
@@ -64,6 +65,7 @@ struct level_type
    logo_type   logo;
    bool        type_normal;
    bool        type_button_zoom;
+   bool        type_button_fade;
    float       position_x;
    float       position_y;
    float       button_height;
@@ -82,6 +84,8 @@ struct menu_type
    int                    last_sellect;
    float                  button_zoom_speed;
    float                  button_zoom_max;
+   float                  button_fade_speed;
+   float                  button_fade_max;
    bool                   option_select;
    bool                   option_escape;
    bool                   option_up;
