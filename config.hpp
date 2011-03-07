@@ -38,6 +38,7 @@ struct config_type
    int  audio_buffers_menu;
    int  audio_music_volume;
    int  audio_sound_volume;
+   int  audio_current_song;
    int  keyboard_movement_menu;
    int  keyboard_run_menu;
    int  keyboard_jump_menu;
@@ -50,6 +51,8 @@ struct config_type
    int  gamepad_invert_axes;
    int  gamepad_no_buttons;
    bool gamepad_enabled;
+   int  mouse_resolution_x;
+   int  mouse_resolution_y;
 };
 
 bool load_default_config(void);
