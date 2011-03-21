@@ -1,12 +1,14 @@
 # depslib dependency file v1.0
-1298180344 source:c:\_svn_\h2oh\trunk\main.cpp
+1300706886 source:c:\_svn_\h2oh\trunk\main.cpp
+	<GL/gl.h>
 	"config.hpp"
 	"game.hpp"
 	"menu.hpp"
+	"particles.hpp"
 
-1297770874 source:c:\_svn_\h2oh\trunk\h2oh.rc
+1300705383 source:c:\_svn_\h2oh\trunk\h2oh.rc
 
-1299490280 source:c:\_svn_\h2oh\trunk\game.cpp
+1300707001 source:c:\_svn_\h2oh\trunk\game.cpp
 	<SDL/SDL.h>
 	<SDL/SDL_mixer.h>
 	<gl/gl.h>
@@ -20,7 +22,7 @@
 	"menu.hpp"
 	"sound.hpp"
 
-1299504268 source:c:\_svn_\h2oh\trunk\menu.cpp
+1300708663 source:c:\_svn_\h2oh\trunk\menu.cpp
 	<SDL/SDL.h>
 	<gl/gl.h>
 	"menu.hpp"
@@ -34,15 +36,15 @@
 	"physics.hpp"
 	"savegame.hpp"
 
-1299488177 c:\_svn_\h2oh\trunk\config.hpp
+1300705383 c:\_svn_\h2oh\trunk\config.hpp
 	<SDL/SDL.h>
 
-1299503860 c:\_svn_\h2oh\trunk\menu.hpp
+1300706154 c:\_svn_\h2oh\trunk\menu.hpp
 
-1299487615 c:\_svn_\h2oh\trunk\game.hpp
+1300708502 c:\_svn_\h2oh\trunk\game.hpp
 	<SDL/SDL.h>
 
-1299488340 source:c:\_svn_\h2oh\trunk\config.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\config.cpp
 	<fstream>
 	"config.hpp"
 
@@ -214,49 +216,49 @@
 
 1298034499 c:\paul\c++_game_projects\h2oh\graphics.hpp
 
-1298035975 source:c:\_svn_\h2oh\trunk\graphics.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\graphics.cpp
 	"graphics.hpp"
 
-1298034499 c:\_svn_\h2oh\trunk\graphics.hpp
+1300705383 c:\_svn_\h2oh\trunk\graphics.hpp
 
-1299372958 c:\_svn_\h2oh\trunk\textures.hpp
+1300705383 c:\_svn_\h2oh\trunk\textures.hpp
 	<gl/gl.h>
 
-1297772844 c:\_svn_\h2oh\trunk\particles.hpp
+1300705383 c:\_svn_\h2oh\trunk\particles.hpp
 
-1297948073 c:\_svn_\h2oh\trunk\music.hpp
+1300705383 c:\_svn_\h2oh\trunk\music.hpp
 	<SDL/SDL_mixer.h>
 
-1297948743 c:\_svn_\h2oh\trunk\sound.hpp
+1300705383 c:\_svn_\h2oh\trunk\sound.hpp
 	<SDL/SDL_mixer.h>
 
-1297775235 source:c:\_svn_\h2oh\trunk\misc.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\misc.cpp
 	<time.h>
 	<stdlib.h>
 	"misc.hpp"
 
-1297775075 c:\_svn_\h2oh\trunk\misc.hpp
+1300705383 c:\_svn_\h2oh\trunk\misc.hpp
 
-1297948414 source:c:\_svn_\h2oh\trunk\music.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\music.cpp
 	"music.hpp"
 
-1297770874 source:c:\_svn_\h2oh\trunk\network.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\network.cpp
 
-1298160347 source:c:\_svn_\h2oh\trunk\particles.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\particles.cpp
 	"particles.hpp"
 	"misc.hpp"
 	"textures.hpp"
 	<math.h>
 	<gl/gl.h>
 
-1298163241 source:c:\_svn_\h2oh\trunk\physics.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\physics.cpp
 	"physics.hpp"
 	<math.h>
 
-1297949400 source:c:\_svn_\h2oh\trunk\sound.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\sound.cpp
 	"sound.hpp"
 
-1299372956 source:c:\_svn_\h2oh\trunk\textures.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\textures.cpp
 	<gl/gl.h>
 	<SDL/SDL.h>
 	<SDL/SDL_image.h>
@@ -291,14 +293,14 @@
 
 1298106875 source:c:\_svn_\h2oh\trunk\m.cpp
 
-1298163131 c:\_svn_\h2oh\trunk\physics.hpp
+1300705383 c:\_svn_\h2oh\trunk\physics.hpp
 
-1298173735 source:c:\_svn_\h2oh\trunk\savegame.cpp
+1300705383 source:c:\_svn_\h2oh\trunk\savegame.cpp
 	<fstream>
 	"game.hpp"
 	"savegame.hpp"
 
-1298173824 c:\_svn_\h2oh\trunk\savegame.hpp
+1300705383 c:\_svn_\h2oh\trunk\savegame.hpp
 
 1298163131 c:\paul\c++_game_projects\h2oh\physics.hpp
 

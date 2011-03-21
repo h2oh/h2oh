@@ -949,6 +949,7 @@ int menu_system_init(void)
     menu.option_down                                                                 = false;
     menu.option_left                                                                 = false;
     menu.option_right                                                                = false;
+    menu.data_changed                                                                = false;
     //-------------------------------------------------------------------------------------------------------
     return(1);
 }
@@ -958,23 +959,22 @@ int menu_system_display(void)
    float t_z_pos    = 0.0f;
    float z_pos      = 1.0f;
    int button_count = 0;
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
    glDisable(GL_DEPTH_TEST);
-
-//---------------------- temp deleteme background!!!!!
-   z_pos -= 0.01f;
-   glBindTexture( GL_TEXTURE_2D, texture[image.background_02].texture);
-   glLoadIdentity();
-   glBegin(GL_QUADS);
-   glNormal3d(0, 0, 1);
-   glTexCoord2i(0,0);glVertex3f( 1.0f, 1.0f,z_pos);
-   glTexCoord2i(1,0);glVertex3f(-1.0f, 1.0f,z_pos);
-   glTexCoord2i(1,1);glVertex3f(-1.0f,-1.0f,z_pos);
-   glTexCoord2i(0,1);glVertex3f( 1.0f,-1.0f,z_pos);
-   glEnd();
-//---------------------- temp deleteme background!!!!!
-
+   //--------------------- If game is not active display a background image ---------------
+   if (!game.status_game_active)
+   {
+      z_pos -= 0.01f;
+      glBindTexture( GL_TEXTURE_2D, texture[image.background_02].texture);
+      glLoadIdentity();
+      glBegin(GL_QUADS);
+      glNormal3d(0, 0, 1);
+      glTexCoord2i(0,0);glVertex3f( 1.0f, 1.0f,z_pos);
+      glTexCoord2i(1,0);glVertex3f(-1.0f, 1.0f,z_pos);
+      glTexCoord2i(1,1);glVertex3f(-1.0f,-1.0f,z_pos);
+      glTexCoord2i(0,1);glVertex3f( 1.0f,-1.0f,z_pos);
+      glEnd();
+   }
    //-------------------- Display menu -------------------------------
    //menu background
    z_pos -= 0.01f;
@@ -1126,9 +1126,7 @@ int menu_system_display(void)
             glEnd();
       }
     }
-   draw_particles();/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    glPopMatrix();
-   SDL_GL_SwapBuffers();/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    return(1);
 }
 
@@ -1173,9 +1171,7 @@ int menu_system_process(void)
     game.mouse_button_delay_count++;
     if (game.mouse_button_delay_count > game.mouse_button_delay) game.mouse_button_delay_count = game.mouse_button_delay;
     int button_count = 0;
-    play_music(song.menu_001);config.audio_current_song = song.menu_001;/// future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
-    background_process();///      future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
-    process_particles();///       future redundant code!!!!!!!!!!!!!!!!!!!!!!!!!!
+    play_music(song.menu_001);config.audio_current_song = song.menu_001;
     if(menu.level[menu.current_level].type_button_zoom) //if button zoom type, process zoom
     {
        for(int button_count = 0;button_count < menu.level[menu.current_level].no_of_buttons+1; button_count++)
@@ -1438,6 +1434,7 @@ int menu_system_process(void)
 
    if ((menu.option_left) || (menu.option_right))
    {
+      menu.data_changed = true;
       play_sound(sfx.menu_move);
       if (menu.option_left)
       {
@@ -1636,10 +1633,10 @@ int menu_system_process(void)
          switch (menu.current_button)
          {
             case 0: //new game selected
-               game_init();
+               enter_game_init();
                SDL_ShowCursor(SDL_DISABLE);
-               game.status_menu_active  = false;
                game.status_game_active  = true;
+               game.status_menu_active  = false;
             break;
             case 1: //load game selected
                menu.current_level       = 1;
@@ -1669,35 +1666,35 @@ int menu_system_process(void)
          switch (menu.current_button)
          {
             case 0: //load game 0
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 1: //load game 1
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 2: //load game 2
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 3: //load game 3
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 4: //load game 4
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1715,35 +1712,35 @@ int menu_system_process(void)
          switch (menu.current_button)
          {
             case 0: //Save game 0
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 1: //Save game 1
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 2: //Save game 2
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 3: //Save game 3
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
                game.status_game_active  = true;
             break;
             case 4: //Save game 4
-               game_init();
+               enter_game_init();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1801,20 +1798,25 @@ int menu_system_process(void)
 
             break;
             case 2: //rate
-               re_init_audio();
+               if (menu.data_changed) re_init_audio();
+               menu.data_changed = false;
                play_sound(sfx.menu_select);
             break;
             case 3: //buffers
-               re_init_audio();
+               if (menu.data_changed) re_init_audio();
+               menu.data_changed = false;
                play_sound(sfx.menu_select);
             break;
             case 4: //channels
-               re_init_audio();
+               if (menu.data_changed) re_init_audio();
+               menu.data_changed = false;
                play_sound(sfx.menu_select);
             break;
             case 5: //back to options menu
                menu.current_level       = 3;
                menu.current_button      = 0;
+               if (menu.data_changed) re_init_audio();
+               menu.data_changed = false;
             break;
             default:
             break;
@@ -1824,23 +1826,30 @@ int menu_system_process(void)
          switch (menu.current_button)
          {
             case 0: //fullscreen
-               re_init_graphics();
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             case 1: //resolution
-               re_init_graphics();
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             case 2: //bbp
-               re_init_graphics();
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             case 3: //alpha blending
-               re_init_graphics();
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             case 4: //double buffering
-               re_init_graphics();
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             case 5: //back to options menu
                menu.current_level       = 3;
                menu.current_button      = 1;
+               if (menu.data_changed) re_init_graphics();
+               menu.data_changed = false;
             break;
             default:
             break;

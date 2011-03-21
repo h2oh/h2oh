@@ -53,6 +53,7 @@ struct game_type
 };
 
 int game_init(void);
+int enter_game_init(void);
 int game_load_resources();
 int game_display(void);
 int game_process(void);

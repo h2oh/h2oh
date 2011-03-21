@@ -16,9 +16,11 @@
  */
 
 
+#include <GL/gl.h>
 #include "config.hpp"
 #include "game.hpp"
 #include "menu.hpp"
+#include "particles.hpp"
 
 extern config_type config;
 extern game_type   game;
@@ -32,21 +34,34 @@ int main(int argc, char *argv[])
    //----------------------------------- Main loop --------------------------------
    while (!game.status_quit_active)
    {
-      if (game.status_menu_active)
-      {
-         menu_system_display();
-         menu_system_process();
-      }
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       if (game.status_game_active)
       {
          game_display();
-         game_process();
+         if (game.status_game_active) game_process();
       }
+      if (game.status_menu_active)
+      {
+         menu_system_display();
+         draw_particles();
+         process_particles();
+         menu_system_process();
+      }
+      SDL_GL_SwapBuffers();
    }
   //----------------------------------- Exit -------------------------------------
+  if (menu.data_changed) re_init_audio();
+  if (menu.data_changed) re_init_graphics();
+  menu.data_changed = false;
   game_deinit();
   return(0);
 }
+
+
+
+
+
+
 
 
 

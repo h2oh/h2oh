@@ -105,13 +105,19 @@ int game_init(void)
    }
    game.mouse_button_delay       = 32;
    game.mouse_button_delay_count = 0;
-   background_init();
    init_textures();
    init_sounds();
    init_music();
    game_load_resources();
+   background_init();
    init_particles();
    init_gl();
+   return(1);
+}
+
+int enter_game_init(void)
+{
+
    return(1);
 }
 
@@ -125,34 +131,33 @@ int game_load_resources()
 
 int game_display(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     background_display();
-    glPushMatrix();
-
-    glPopMatrix();
-    SDL_GL_SwapBuffers();
     return(1);
 }
 
 int game_process(void)
 {
    background_process();
-   while (SDL_PollEvent(&game.event))
+   process_particles();
+   if (!game.status_menu_active)
    {
-      if (game.event.type == SDL_QUIT) game.status_quit_active = true;
-      if (game.event.type == SDL_KEYDOWN)
+      while (SDL_PollEvent(&game.event))
       {
-         if (game.event.key.keysym.sym == SDLK_ESCAPE)
+         if (game.event.type == SDL_QUIT) game.status_quit_active = true;
+         if (game.event.type == SDL_KEYDOWN)
          {
-            SDL_ShowCursor(SDL_ENABLE);
-            game.status_menu_active  = true;
-            game.status_game_active  = false;
-            menu.last_sellect        = -1;
-            menu.current_level       = 0;
-            menu.current_button      = 0;
-            game.mouse_button_left   = false;
-            game.mouse_button_middle = false;
-            game.mouse_button_right  = false;
+            if (game.event.key.keysym.sym == SDLK_ESCAPE)
+            {
+               SDL_ShowCursor(SDL_ENABLE);
+               game.status_menu_active  = true;
+//               game.status_game_active  = false;
+               menu.last_sellect        = -1;
+               menu.current_level       = 0;
+               menu.current_button      = 0;
+               game.mouse_button_left   = false;
+               game.mouse_button_middle = false;
+               game.mouse_button_right  = false;
+            }
          }
       }
    }

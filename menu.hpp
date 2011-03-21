@@ -92,6 +92,7 @@ struct menu_type
    bool                   option_down;
    bool                   option_left;
    bool                   option_right;
+   bool                   data_changed;
 };
 
 int  menu_system_init   (void);
