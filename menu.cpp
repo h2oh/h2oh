@@ -1667,6 +1667,7 @@ int menu_system_process(void)
          {
             case 0: //load game 0
                enter_game_init();
+               loading_display();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1674,6 +1675,7 @@ int menu_system_process(void)
             break;
             case 1: //load game 1
                enter_game_init();
+               loading_display();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1681,6 +1683,7 @@ int menu_system_process(void)
             break;
             case 2: //load game 2
                enter_game_init();
+               loading_display();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1688,6 +1691,7 @@ int menu_system_process(void)
             break;
             case 3: //load game 3
                enter_game_init();
+               loading_display();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1695,6 +1699,7 @@ int menu_system_process(void)
             break;
             case 4: //load game 4
                enter_game_init();
+               loading_display();
                Load_Game(button_count);
                SDL_ShowCursor(SDL_DISABLE);
                game.status_menu_active  = false;
@@ -1798,16 +1803,19 @@ int menu_system_process(void)
 
             break;
             case 2: //rate
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
                play_sound(sfx.menu_select);
             break;
             case 3: //buffers
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
                play_sound(sfx.menu_select);
             break;
             case 4: //channels
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
                play_sound(sfx.menu_select);
@@ -1815,6 +1823,7 @@ int menu_system_process(void)
             case 5: //back to options menu
                menu.current_level       = 3;
                menu.current_button      = 0;
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
             break;
@@ -1826,28 +1835,34 @@ int menu_system_process(void)
          switch (menu.current_button)
          {
             case 0: //fullscreen
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;
             case 1: //resolution
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;
             case 2: //bbp
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;
             case 3: //alpha blending
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;
             case 4: //double buffering
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;
             case 5: //back to options menu
                menu.current_level       = 3;
                menu.current_button      = 1;
+               if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_graphics();
                menu.data_changed = false;
             break;

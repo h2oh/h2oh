@@ -384,3 +384,19 @@ int background_display (void)
     return(1);
 };
 
+int  loading_display    (void)
+{
+    float z_pos   = 0.99f;
+    glPushMatrix();
+    glBindTexture( GL_TEXTURE_2D, texture[image.background_03].texture);
+    glLoadIdentity();
+    glBegin( GL_QUADS );
+    glTexCoord2i( 1, 0 );glVertex3f( 1.0f, 1.0f,z_pos);
+    glTexCoord2i( 1, 1 );glVertex3f( 1.0f,-1.0f,z_pos);
+    glTexCoord2i( 0, 1 );glVertex3f(-1.0f,-1.0f,z_pos);
+    glTexCoord2i( 0, 0 );glVertex3f(-1.0f, 1.0f,z_pos);
+    glEnd();
+    glPopMatrix();
+    return(1);
+};
+
