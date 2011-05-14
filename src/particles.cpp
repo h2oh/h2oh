@@ -19,7 +19,7 @@
 #include "misc.hpp"
 #include "textures.hpp"
 #include <math.h>
-#include <gl/gl.h>
+#include <GL/gl.h>
 
 extern image_type    image;
 extern texture_type  texture[MAX_TEXTURES];

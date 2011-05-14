@@ -16,7 +16,7 @@
  */
 
 #include <SDL/SDL.h>
-#include <gl/gl.h>
+#include <GL/gl.h>
 #include "menu.hpp"
 #include "game.hpp"
 #include "textures.hpp"

@@ -17,9 +17,9 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
-#include <gl/gl.h>
+#include <GL/gl.h>
 #include <physfs.h>
-#include <Box2D/Box2D.h>
+//#include <Box2D/Box2D.h>
 #include "game.hpp"
 #include "config.hpp"
 #include "textures.hpp"
@@ -171,7 +171,7 @@ int game_deinit(void)
   kill_sounds();
   kill_textures();
   PHYSFS_deinit();
-  Mix_Quit();
+  Mix_CloseAudio();
   SDL_Quit();
   return(1);
 }

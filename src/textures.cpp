@@ -15,7 +15,7 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gl/gl.h>
+#include <GL/gl.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include "textures.hpp"

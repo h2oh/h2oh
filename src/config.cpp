@@ -91,7 +91,7 @@ bool init_log_file(const char *log_file)
   return(0);
 };
 
-bool write_log_file(const char *log_file, char error_string[])
+bool write_log_file(const char *log_file, const char error_string[])
 {
   std::fstream logfile(log_file,std::ios::out|std::ios::app);
   if (logfile.is_open())

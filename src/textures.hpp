@@ -15,7 +15,7 @@
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gl/gl.h>
+#include <GL/gl.h>
 
 const int MAX_TEXTURES = 320;
 struct texture_type

@@ -11,7 +11,34 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Linker>
-					<Add library="libBox2D" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add library="mingw32" />
+					<Add library="SDLmain" />
+					<Add library="SDL" />
+					<Add library="opengl32" />
+					<Add library="SDL_mixer" />
+					<Add library="SDL_image" />
+					<Add library="libphysfs" />
+					<Add directory="\usr\lib" />
+					<Add directory="\host\Program Files (x86)\CodeBlocks\MinGW\lib" />
+				</Linker>
+			</Target>
+			<Target title="Linux">
+				<Option output="h2oh" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add library="mingw32" />
+					<Add library="SDLmain" />
+					<Add library="SDL" />
+					<Add library="opengl32" />
+					<Add library="SDL_mixer" />
+					<Add library="SDL_image" />
+					<Add library="libphysfs" />
+					<Add library="\usr\lib\libGL.so" />
 				</Linker>
 			</Target>
 		</Build>
@@ -22,45 +49,43 @@
 			<Add library="SDLmain" />
 			<Add library="SDL" />
 			<Add library="opengl32" />
-			<Add library="sdl_mixer" />
-			<Add library="sdl_image" />
-			<Add library="glu32" />
-			<Add library="freetype" />
+			<Add library="SDL_mixer" />
+			<Add library="SDL_image" />
 			<Add library="libphysfs" />
 		</Linker>
-		<Unit filename="config.cpp" />
-		<Unit filename="config.hpp" />
-		<Unit filename="game.cpp" />
-		<Unit filename="game.hpp" />
-		<Unit filename="graphics.cpp" />
-		<Unit filename="graphics.hpp" />
-		<Unit filename="h2oh.rc">
+		<Unit filename="src\config.cpp" />
+		<Unit filename="src\config.hpp" />
+		<Unit filename="src\game.cpp" />
+		<Unit filename="src\game.hpp" />
+		<Unit filename="src\graphics.cpp" />
+		<Unit filename="src\graphics.hpp" />
+		<Unit filename="src\h2oh.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
-		<Unit filename="main.cpp" />
-		<Unit filename="main.hpp" />
-		<Unit filename="menu.cpp" />
-		<Unit filename="menu.hpp" />
-		<Unit filename="misc.cpp" />
-		<Unit filename="misc.hpp" />
-		<Unit filename="music.cpp" />
-		<Unit filename="music.hpp" />
-		<Unit filename="network.cpp" />
-		<Unit filename="network.hpp" />
-		<Unit filename="particles.cpp" />
-		<Unit filename="particles.hpp" />
-		<Unit filename="physics.cpp" />
-		<Unit filename="physics.hpp" />
-		<Unit filename="savegame.cpp" />
-		<Unit filename="savegame.hpp" />
-		<Unit filename="sound.cpp" />
-		<Unit filename="sound.hpp" />
-		<Unit filename="textures.cpp" />
-		<Unit filename="textures.hpp" />
+		<Unit filename="src\main.cpp" />
+		<Unit filename="src\main.hpp" />
+		<Unit filename="src\menu.cpp" />
+		<Unit filename="src\menu.hpp" />
+		<Unit filename="src\misc.cpp" />
+		<Unit filename="src\misc.hpp" />
+		<Unit filename="src\music.cpp" />
+		<Unit filename="src\music.hpp" />
+		<Unit filename="src\network.cpp" />
+		<Unit filename="src\network.hpp" />
+		<Unit filename="src\particles.cpp" />
+		<Unit filename="src\particles.hpp" />
+		<Unit filename="src\physics.cpp" />
+		<Unit filename="src\physics.hpp" />
+		<Unit filename="src\savegame.cpp" />
+		<Unit filename="src\savegame.hpp" />
+		<Unit filename="src\sound.cpp" />
+		<Unit filename="src\sound.hpp" />
+		<Unit filename="src\textures.cpp" />
+		<Unit filename="src\textures.hpp" />
 		<Extensions>
 			<AutoVersioning>
 				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
-				<Settings autoincrement="1" date_declarations="1" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Settings autoincrement="1" date_declarations="1" update_manifest="1" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
 				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
 				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
 			</AutoVersioning>

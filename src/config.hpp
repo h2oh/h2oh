@@ -59,4 +59,4 @@ bool load_default_config(void);
 bool save_config_file(const char *config_file);
 bool load_config_file(const char *config_file);
 bool init_log_file(const char *log_file);
-bool write_log_file(const char *log_file, char error_string[]);
+bool write_log_file(const char *log_file, const char error_string[]);
