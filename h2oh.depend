@@ -433,11 +433,11 @@
 	"game.hpp"
 	"config.hpp"
 
-1302051570 source:c:\_svn_\h2oh\trunk\src\config.cpp
+1307868431 source:c:\_svn_\h2oh\trunk\src\config.cpp
 	<fstream>
 	"config.hpp"
 
-1302051570 c:\_svn_\h2oh\trunk\src\config.hpp
+1307868056 c:\_svn_\h2oh\trunk\src\config.hpp
 	<SDL/SDL.h>
 
 1302142100 source:c:\_svn_\h2oh\trunk\src\game.cpp

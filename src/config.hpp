@@ -1,4 +1,5 @@
-/* Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
+/**
+ * Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
  * This file is part of "H2oH!"
  *
  * "H2oH!" is free software: you can redistribute it and/or modify
@@ -13,7 +14,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Paul Wortmann
+ * @license GPL
  */
+#ifndef CONFIG_H
+#define CONFIG_H
 
 #include <SDL/SDL.h>
 
@@ -60,3 +66,5 @@ bool save_config_file(const char *config_file);
 bool load_config_file(const char *config_file);
 bool init_log_file(const char *log_file);
 bool write_log_file(const char *log_file, const char error_string[]);
+
+#endif

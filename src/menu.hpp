@@ -1,4 +1,5 @@
-/* Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
+/**
+ * Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
  * This file is part of "H2oH!"
  *
  * "H2oH!" is free software: you can redistribute it and/or modify
@@ -13,7 +14,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Paul Wortmann
+ * @license GPL
  */
+#ifndef MENU_H
+#define MENU_H
 
 const int MAX_BUTTONS        = 16;
 const int MAX_LEVELS         = 16;
@@ -102,3 +108,5 @@ bool mouse_over_button  (int level_count, int button_count, float mouse_x, float
 int  mouse_over_select  (int level_count, int button_count, float mouse_x, float mouse_y);
 bool mouse_over_logo    (int level_count, float mouse_x, float mouse_y);
 
+
+#endif

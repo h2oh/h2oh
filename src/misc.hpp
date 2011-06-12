@@ -1,4 +1,5 @@
-/* Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
+/**
+ * Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
  * This file is part of "H2oH!"
  *
  * "H2oH!" is free software: you can redistribute it and/or modify
@@ -13,7 +14,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Paul Wortmann
+ * @license GPL
  */
+#ifndef MISC_H
+#define MISC_H
 
 int seed_rand(void);
 double random_double(void);
@@ -22,3 +28,5 @@ int    random_dec(void);
 int    random_cen(void);
 int    random_int(void);
 float  random_GLcoord(void);
+
+#endif

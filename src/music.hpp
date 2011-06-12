@@ -1,4 +1,5 @@
-/* Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
+/**
+ * Copyright (C) 2011 Paul Wortmann, PhysHex Games, www.physhexgames.co.nr
  * This file is part of "H2oH!"
  *
  * "H2oH!" is free software: you can redistribute it and/or modify
@@ -13,7 +14,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with "H2oH!" If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @author Paul Wortmann
+ * @license GPL
  */
+#ifndef MUSIC_H
+#define MUSIC_H
 
 #include <SDL/SDL_mixer.h>
 
@@ -32,3 +38,5 @@ int init_music(void);
 int load_music(void);
 int kill_music(void);
 int play_music(int music_num);
+
+#endif
