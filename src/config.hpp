@@ -22,6 +22,7 @@
 #define CONFIG_H
 
 #include <SDL/SDL.h>
+#include <string>
 
 struct config_type
 {
@@ -64,7 +65,16 @@ struct config_type
 bool load_default_config(void);
 bool save_config_file(const char *config_file);
 bool load_config_file(const char *config_file);
-bool init_log_file(const char *log_file);
-bool write_log_file(const char *log_file, const char error_string[]);
+bool init_log_file   (const char *log_file);
+bool write_log_file  (const char *log_file, const char  log_data[]);
+bool write_log_file  (const char *log_file, std::string log_data);
+bool write_log_file  (const char *log_file, std::string log_data,   int         log_data_int);
+bool write_log_file  (const char *log_file, std::string log_data,   float       log_data_float);
+bool write_log_file  (const char *log_file, std::string log_data,   bool        log_data_bool);
+bool write_log_file  (const char *log_file, int         log_data);
+bool write_log_file  (const char *log_file, float       log_data);
+bool write_log_file  (const char *log_file, bool        log_data);
+bool write_log_file  (const char *log_file, std::string log_data_1, std::string log_data_2);
+bool write_log_file  (const char *log_file, std::string log_data_1, const char  log_data_2[]);
 
 #endif

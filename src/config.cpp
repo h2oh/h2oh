@@ -71,8 +71,8 @@ bool save_config_file(const char *config_file)
      configfile.write(reinterpret_cast<char*>(&config), sizeof(config_type));
      configfile.close();
   }
-  else return(1);
-  return(0);
+  else return(false);
+  return(true);
 };
 
 bool load_config_file(const char *config_file)
@@ -83,27 +83,155 @@ bool load_config_file(const char *config_file)
      configfile.read(reinterpret_cast<char*>(&config), sizeof(config_type));
      configfile.close();
   }
-  else return(1);
-  return(0);
+  else return(false);
+  return(true);
 };
 
 bool init_log_file(const char *log_file)
 {
   std::fstream logfile(log_file,std::ios::out|std::ios::binary|std::ios::trunc);
   if (logfile.is_open()) logfile.close();
-  else return(1);
-  return(0);
+  else return(false);
+  return(true);
 };
 
-bool write_log_file(const char *log_file, const char error_string[])
+bool write_log_file(const char *log_file, const char log_data[])
 {
   std::fstream logfile(log_file,std::ios::out|std::ios::app);
   if (logfile.is_open())
   {
-     logfile << error_string;
+     logfile << log_data;
      logfile << "\n";
      logfile.close();
   }
-  else return(1);
-  return(0);
+  else return(false);
+  return(true);
 };
+
+bool write_log_file  (const char *log_file, std::string log_data)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, std::string log_data, int log_data_int)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data;
+     logfile << log_data_int;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, std::string log_data, float log_data_float)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data;
+     logfile << log_data_float;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, std::string log_data, bool  log_data_bool)
+{
+   std::fstream logfile(log_file,std::ios::out|std::ios::app);
+   if (logfile.is_open())
+   {
+        logfile << log_data;
+        if(log_data_bool) logfile << "TRUE";
+        else logfile << "FALSE";
+        logfile << "\n";
+        logfile.close();
+   }
+   else return(false);
+   return(true);
+};
+
+
+bool write_log_file  (const char *log_file, int log_data)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, float log_data)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, bool log_data)
+{
+    std::fstream logfile(log_file,std::ios::out|std::ios::app);
+    if (logfile.is_open())
+    {
+        if(log_data) logfile << "TRUE";
+        else logfile << "FALSE";
+        logfile << "\n";
+        logfile.close();
+    }
+    else return(false);
+    return(true);
+};
+
+bool write_log_file  (const char *log_file, std::string log_data_1, std::string log_data_2)
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data_1;
+     logfile << log_data_2;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+bool write_log_file  (const char *log_file, std::string log_data_1, const char log_data_2[])
+{
+  std::fstream logfile(log_file,std::ios::out|std::ios::app);
+  if (logfile.is_open())
+  {
+     logfile << log_data_1;
+     logfile << log_data_2;
+     logfile << "\n";
+     logfile.close();
+  }
+  else return(false);
+  return(true);
+};
+
+
+
