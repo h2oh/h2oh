@@ -35,8 +35,7 @@
 extern config_type   config;
 extern particle_type particle[MAX_PARTICLES];
 extern menu_type     menu;
-extern sfx_type      sfx;
-extern sound_type    sound[MAX_SOUNDS];
+extern sound_type    sound;
 extern song_type     song;
 extern music_type    music[MAX_MUSIC];
 extern image_type    image;
@@ -110,7 +109,6 @@ int game_init(void)
    game.mouse_button_delay       = 32;
    game.mouse_button_delay_count = 0;
    init_textures();
-   init_sounds();
    init_music();
    game_load_resources();
    background_init();
@@ -172,7 +170,6 @@ int game_deinit(void)
 {
   save_config_file(App_ConF);
   kill_music();
-  kill_sounds();
   kill_textures();
   PHYSFS_deinit();
   Mix_CloseAudio();

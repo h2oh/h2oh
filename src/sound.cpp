@@ -20,41 +20,38 @@
  */
 
 #include "sound.hpp"
-sfx_type   sfx;
-sound_type sound[MAX_SOUNDS];
+#include "config.hpp"
 
-int init_sounds(void)
-{
-   for(int count = 0; count < MAX_SOUNDS; count++)
-   {
-      sound[count].active  = false;
-      sound[count].channel = -1;
-      sound[count].sound = NULL;
-   }
-    return(1);
-};
+const char       App_LogF[] = "Outcast Island.log";
+      sound_type sound;
 
 int load_sounds(void)
 {
-   int sfx_count = 0;
-   sound[sfx_count].active =  true; sound[sfx_count].sound =  Mix_LoadWAV("data/sound/menu_move.wav");sfx.menu_move = sfx_count;sfx_count++;
-   sound[sfx_count].active =  true; sound[sfx_count].sound =  Mix_LoadWAV("data/sound/menu_select.wav");sfx.menu_select = sfx_count;sfx_count++;
-   return(1);
+    int sfx_count = 0;
+    sound.menu_move.load  ("data/sound/menu_move.wav");  sfx_count++;
+    sound.menu_select.load("data/sound/menu_select.wav");sfx_count++;
+    write_log_file(App_LogF,"Sound files loaded -> ",sfx_count);
+    return(1);
 };
 
-int kill_sounds(void)
+sound_class::sound_class()
 {
-   Mix_HaltChannel(-1);
-   for(int count = 0; count < MAX_SOUNDS; count++)
-   {
-      if (sound[count].active == true) Mix_FreeChunk(sound[count].sound);
-      sound[count].active = false;
-   }
-   return(1);
+    sound_channel = -1;
 };
 
-int play_sound (int sound_num)
+sound_class::~sound_class()
 {
-   sound[sound_num].channel = Mix_PlayChannel(-1, sound[sound_num].sound, 0);
-   return(1);
+    Mix_HaltChannel(-1);
+    Mix_FreeChunk(sound_data);
 };
+
+void sound_class::load(std::string file_name)
+{
+    sound_data = Mix_LoadWAV(file_name.c_str());
+};
+
+void sound_class::play(void)
+{
+    sound_channel = Mix_PlayChannel(-1, sound_data, 0);
+};
+

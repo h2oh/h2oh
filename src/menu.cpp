@@ -34,8 +34,7 @@
 /*0A0A55*/
 
 extern config_type  config;
-extern sfx_type     sfx;
-extern sound_type   sound[MAX_SOUNDS];
+extern sound_type sound;
 extern song_type    song;
 extern music_type   music[MAX_MUSIC];
 extern image_type   image;
@@ -1308,7 +1307,7 @@ int menu_system_process(void)
            {
               menu.last_sellect = -1;
               menu.current_button = button_count;
-              play_sound(sfx.menu_move);
+              sound.menu_move.play();
            }
            if (menu.level[menu.current_level].button[button_count].type_normal)
            {
@@ -1425,7 +1424,7 @@ int menu_system_process(void)
       menu.option_up = false;
       menu.current_button--;
       if (menu.current_button < 0) menu.current_button = 0;
-      else play_sound(sfx.menu_move);
+      else sound.menu_move.play();
    };
 
    if (menu.option_down)
@@ -1433,13 +1432,13 @@ int menu_system_process(void)
       menu.option_down = false;
       menu.current_button++;
       if (menu.current_button > menu.level[menu.current_level].no_of_buttons) menu.current_button = menu.level[menu.current_level].no_of_buttons;
-      else play_sound(sfx.menu_move);
+      else sound.menu_move.play();
    };
 
    if ((menu.option_left) || (menu.option_right))
    {
       menu.data_changed = true;
-      play_sound(sfx.menu_move);
+      sound.menu_move.play();
       if (menu.option_left)
       {
          if (menu.level[menu.current_level].button[menu.current_button].type_select) menu.level[menu.current_level].button[menu.current_button].current_value--;
@@ -1577,7 +1576,7 @@ int menu_system_process(void)
       game.gamepad_button_2    = false;
       game.gamepad_button_3    = false;
       menu.last_sellect        = -1;
-      play_sound(sfx.menu_select);
+      sound.menu_select.play();
       menu.option_escape       = false;
       switch (menu.current_level)
       {
@@ -1629,7 +1628,7 @@ int menu_system_process(void)
       game.gamepad_button_2    = false;
       game.gamepad_button_3    = false;
       menu.last_sellect        = -1;
-      play_sound(sfx.menu_select);
+      sound.menu_select.play();
       menu.option_select       = false;
       switch (menu.current_level)
       {
@@ -1810,19 +1809,19 @@ int menu_system_process(void)
                if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
-               play_sound(sfx.menu_select);
+               sound.menu_select.play();
             break;
             case 3: //buffers
                if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
-               play_sound(sfx.menu_select);
+               sound.menu_select.play();
             break;
             case 4: //channels
                if (menu.data_changed) loading_display();
                if (menu.data_changed) re_init_audio();
                menu.data_changed = false;
-               play_sound(sfx.menu_select);
+               sound.menu_select.play();
             break;
             case 5: //back to options menu
                menu.current_level       = 3;

@@ -22,24 +22,25 @@
 #define SOUND_H
 
 #include <SDL/SDL_mixer.h>
+#include <string>
 
-const int MAX_SOUNDS = 64;
+int load_sounds(void);
+
+class sound_class
+{
+    int        sound_channel;
+    Mix_Chunk *sound_data;
+    public:
+    sound_class();
+   ~sound_class();
+    void play(void);
+    void load(std::string file_name);
+};
+
 struct sound_type
 {
-   bool active;
-   int channel;
-   Mix_Chunk *sound;
+    sound_class menu_move;
+    sound_class menu_select;
 };
-
-struct sfx_type
-{
-   int menu_move;
-   int menu_select;
-};
-
-int init_sounds(void);
-int load_sounds(void);
-int kill_sounds(void);
-int play_sound (int sound_num);
 
 #endif
